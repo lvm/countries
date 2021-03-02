@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 
+import abc
 from typing import List
+from typing import Union
+from typing import Literal
 from typing import Optional
 from dataclasses import field
 from dataclasses import dataclass
 
+try:
+    from typing import Iterator
+except:
+    from collections.abc import Iterator
 
 CC_DICT = {
     "AD": {"code": "AD", "name": "Andorra", "year": 1974, "alias": "", "tld": ".ad"},
@@ -752,7 +759,7 @@ CC_DICT = {
 
 
 @dataclass
-class Country:
+class Country(object, metaclass=abc.ABCMeta):
     """
     A Country holds:
     * `id` 2-Letter Country Code.
@@ -767,6 +774,12 @@ class Country:
     tld: List[str]
     alias: List[str] = field(default_factory=list)
 
+    def __getitem__(self, key):
+        if isinstance(self, Country) or issubclass(self, Country):
+            return getattr(self, key)
+        else:
+            raise NotImplementedError
+
 
 @dataclass(frozen=True)
 class World:
@@ -777,48 +790,71 @@ class World:
 
     countries: List[Optional[Country]] = field(default_factory=list)
 
-    def __post_init__(self):
+    def __post_init__(self, *args: list, **kwargs: dict) -> Literal[None]:
         for cc, data in CC_DICT.items():
-            name, year, tld, alias = [data.get(_) for _ in ["name", "year", "tld", "alias"]]
+            name, year, tld, alias = [
+                data.get(_) for _ in ["name", "year", "tld", "alias"]
+            ]
             tld = [_.strip() for _ in tld.split(",")]
             alias = [_.strip() for _ in alias.split(",")]
             self.countries.append(Country(cc, name, year, tld, alias))
 
-    def __iter__(self):
+    def __iter__(self, *args: list, **kwargs: dict) -> Iterator[Country]:
         for country in self.countries:
             yield country
 
-    def __find(self, key, value, strict=False):
-        if key == "id":
-            for country in self:
-                if country.id == value:
-                    return country
+    def __find(
+        self, attr: str, value: str, strict: bool = False, *args: list, **kwargs: dict
+    ) -> Optional[Country]:
+        def match(
+            current: Union[str, list], value: str, strict: bool = False
+        ) -> Optional[Country]:
+            if isinstance(current, str):
+                return (
+                    country
+                    if (not strict and value.lower() == current.lower())
+                    or (strict and value == current)
+                    else None
+                )
+            elif isinstance(current, list):
+                return (
+                    country
+                    if (not strict and value.lower() in [_.lower() for _ in current])
+                    or (strict and value in current)
+                    else None
+                )
 
-        if key == "alias":
-            for country in self:
-                if value in country.alias:
-                    return country
+        result = None
+        for country in self:
+            if match(getattr(country, attr), value, strict):
+                result = country
+                break
 
-        if key == "tld":
-            for country in self:
-                if value in country.tld:
-                    return country
+        return result
 
-        if key == "name":
-            for country in self:
-                if (not strict and value.lower() in country.name.lower()) or (
-                    strict and country.name == value
-                ):
-                    return country
-
-    def find_by_id(self, value):
+    def find_by_id(self, value: str, *args: list, **kwargs: dict) -> Country:
         return self.__find("id", value)
 
-    def find_by_name(self, value, strict=True):
+    def find_by_name(
+        self, value: str, strict: bool = True, *args: list, **kwargs: dict
+    ) -> Country:
         return self.__find("name", value, strict)
 
-    def find_by_tld(self, value, strict=True):
+    def find_by_tld(
+        self, value: str, strict: bool = True, *args: list, **kwargs: dict
+    ) -> Country:
         return self.__find("tld", value, strict)
 
-    def find_by_alias(self, value, strict=True):
+    def find_by_alias(
+        self, value: str, strict: bool = True, *args: list, **kwargs: dict
+    ) -> Country:
         return self.__find("alias", value, strict)
+
+    def find(
+        self, value: str, strict: bool = False, *args: list, **kwargs: dict
+    ) -> List[Optional[Country]]:
+        finders = [
+            getattr(self, f"find_by_{name}") for name in ["id", "name", "tld", "alias"]
+        ]
+
+        return list(filter(lambda c: c, [finder(value, strict) for finder in finders]))
