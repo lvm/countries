@@ -14,261 +14,275 @@ except:
     from collections.abc import Iterator
 
 LL_DICT = {
-    "aa": {"code": "aa", "name": "Afar", "native": "Afar", "rtl": False},
-    "ab": {"code": "ab", "name": "Abkhazian", "native": "Аҧсуа", "rtl": False},
-    "af": {"code": "af", "name": "Afrikaans", "native": "Afrikaans", "rtl": False},
-    "ak": {"code": "ak", "name": "Akan", "native": "Akana", "rtl": False},
-    "am": {"code": "am", "name": "Amharic", "native": "አማርኛ", "rtl": False},
-    "an": {"code": "an", "name": "Aragonese", "native": "Aragonés", "rtl": False},
-    "ar": {"code": "ar", "name": "Arabic", "native": "العربية", "rtl": True},
-    "as": {"code": "as", "name": "Assamese", "native": "অসমীয়া", "rtl": False},
-    "av": {"code": "av", "name": "Avar", "native": "Авар", "rtl": False},
-    "ay": {"code": "ay", "name": "Aymara", "native": "Aymar", "rtl": False},
+    "aa": {"code": "aa", "name": "Afar", "native": "Afar", "alias": [], "rtl": False},
+    "ab": {"code": "ab", "name": "Abkhazian", "native": "Аҧсуа", "alias": [], "rtl": False},
+    "af": {"code": "af", "name": "Afrikaans", "native": "Afrikaans", "alias": [], "rtl": False},
+    "ak": {"code": "ak", "name": "Akan", "native": "Akana", "alias": [], "rtl": False},
+    "am": {"code": "am", "name": "Amharic", "native": "አማርኛ", "alias": [], "rtl": False},
+    "an": {"code": "an", "name": "Aragonese", "native": "Aragonés", "alias": [], "rtl": False},
+    "ar": {"code": "ar", "name": "Arabic", "native": "العربية", "alias": [], "rtl": True},
+    "as": {"code": "as", "name": "Assamese", "native": "অসমীয়া", "alias": [], "rtl": False},
+    "av": {"code": "av", "name": "Avar", "native": "Авар", "alias": [], "rtl": False},
+    "ay": {"code": "ay", "name": "Aymara", "native": "Aymar", "alias": [], "rtl": False},
     "az": {
         "code": "az",
         "name": "Azerbaijani",
         "native": "Azərbaycanca / آذربايجان",
+        "alias": [],
         "rtl": False,
     },
-    "ba": {"code": "ba", "name": "Bashkir", "native": "Башҡорт", "rtl": False},
-    "be": {"code": "be", "name": "Belarusian", "native": "Беларуская", "rtl": False},
-    "bg": {"code": "bg", "name": "Bulgarian", "native": "Български", "rtl": False},
-    "bh": {"code": "bh", "name": "Bihari", "native": "भोजपुरी", "rtl": False},
-    "bi": {"code": "bi", "name": "Bislama", "native": "Bislama", "rtl": False},
-    "bm": {"code": "bm", "name": "Bambara", "native": "Bamanankan", "rtl": False},
-    "bn": {"code": "bn", "name": "Bengali", "native": "বাংলা", "rtl": False},
+    "ba": {"code": "ba", "name": "Bashkir", "native": "Башҡорт", "alias": [], "rtl": False},
+    "be": {"code": "be", "name": "Belarusian", "native": "Беларуская", "alias": [], "rtl": False},
+    "bg": {"code": "bg", "name": "Bulgarian", "native": "Български", "alias": [], "rtl": False},
+    "bh": {"code": "bh", "name": "Bihari", "native": "भोजपुरी", "alias": [], "rtl": False},
+    "bi": {"code": "bi", "name": "Bislama", "native": "Bislama", "alias": [], "rtl": False},
+    "bm": {"code": "bm", "name": "Bambara", "native": "Bamanankan", "alias": [], "rtl": False},
+    "bn": {"code": "bn", "name": "Bengali", "native": "বাংলা", "alias": [], "rtl": False},
     "bo": {
         "code": "bo",
         "name": "Tibetan",
         "native": "བོད་ཡིག / Bod skad",
+        "alias": [],
         "rtl": False,
     },
-    "br": {"code": "br", "name": "Breton", "native": "Brezhoneg", "rtl": False},
-    "bs": {"code": "bs", "name": "Bosnian", "native": "Bosanski", "rtl": False},
-    "ca": {"code": "ca", "name": "Catalan", "native": "Català", "rtl": False},
-    "ce": {"code": "ce", "name": "Chechen", "native": "Нохчийн", "rtl": False},
-    "ch": {"code": "ch", "name": "Chamorro", "native": "Chamoru", "rtl": False},
-    "co": {"code": "co", "name": "Corsican", "native": "Corsu", "rtl": False},
-    "cr": {"code": "cr", "name": "Cree", "native": "Nehiyaw", "rtl": False},
-    "cs": {"code": "cs", "name": "Czech", "native": "Čeština", "rtl": False},
+    "br": {"code": "br", "name": "Breton", "native": "Brezhoneg", "alias": [], "rtl": False},
+    "bs": {"code": "bs", "name": "Bosnian", "native": "Bosanski", "alias": [], "rtl": False},
+    "ca": {"code": "ca", "name": "Catalan", "native": "Català", "alias": [], "rtl": False},
+    "ce": {"code": "ce", "name": "Chechen", "native": "Нохчийн", "alias": [], "rtl": False},
+    "ch": {"code": "ch", "name": "Chamorro", "native": "Chamoru", "alias": [], "rtl": False},
+    "co": {"code": "co", "name": "Corsican", "native": "Corsu", "alias": [], "rtl": False},
+    "cr": {"code": "cr", "name": "Cree", "native": "Nehiyaw", "alias": [], "rtl": False},
+    "cs": {"code": "cs", "name": "Czech", "native": "Čeština", "alias": [], "rtl": False},
     "cu": {
         "code": "cu",
         "name": "Old Church Slavonic / Old Bulgarian",
         "native": "словѣньскъ / slověnĭskŭ",
+        "alias": [],
         "rtl": False,
     },
-    "cv": {"code": "cv", "name": "Chuvash", "native": "Чăваш", "rtl": False},
-    "cy": {"code": "cy", "name": "Welsh", "native": "Cymraeg", "rtl": False},
-    "da": {"code": "da", "name": "Danish", "native": "Dansk", "rtl": False},
-    "de": {"code": "de", "name": "German", "native": "Deutsch", "rtl": False},
-    "dv": {"code": "dv", "name": "Divehi", "native": "ދިވެހިބަސް", "rtl": True},
-    "dz": {"code": "dz", "name": "Dzongkha", "native": "ཇོང་ཁ", "rtl": False},
-    "ee": {"code": "ee", "name": "Ewe", "native": "Ɛʋɛ", "rtl": False},
-    "el": {"code": "el", "name": "Greek", "native": "Ελληνικά", "rtl": False},
-    "en": {"code": "en", "name": "English", "native": "English", "rtl": False},
-    "eo": {"code": "eo", "name": "Esperanto", "native": "Esperanto", "rtl": False},
-    "es": {"code": "es", "name": "Spanish", "native": "Español", "rtl": False},
-    "et": {"code": "et", "name": "Estonian", "native": "Eesti", "rtl": False},
-    "eu": {"code": "eu", "name": "Basque", "native": "Euskara", "rtl": False},
-    "fa": {"code": "fa", "name": "Persian", "native": "فارسی", "rtl": True},
-    "ff": {"code": "ff", "name": "Peul", "native": "Fulfulde", "rtl": False},
-    "fi": {"code": "fi", "name": "Finnish", "native": "Suomi", "rtl": False},
-    "fj": {"code": "fj", "name": "Fijian", "native": "Na Vosa Vakaviti", "rtl": False},
-    "fo": {"code": "fo", "name": "Faroese", "native": "Føroyskt", "rtl": False},
-    "fr": {"code": "fr", "name": "French", "native": "Français", "rtl": False},
-    "fy": {"code": "fy", "name": "West Frisian", "native": "Frysk", "rtl": False},
-    "ga": {"code": "ga", "name": "Irish", "native": "Gaeilge", "rtl": False},
-    "gd": {"code": "gd", "name": "Scottish Gaelic", "native": "Gàidhlig", "rtl": False},
-    "gl": {"code": "gl", "name": "Galician", "native": "Galego", "rtl": False},
-    "gn": {"code": "gn", "name": "Guarani", "native": "Avañe'ẽ", "rtl": False},
-    "gu": {"code": "gu", "name": "Gujarati", "native": "ગુજરાતી", "rtl": False},
-    "gv": {"code": "gv", "name": "Manx", "native": "Gaelg", "rtl": False},
-    "ha": {"code": "ha", "name": "Hausa", "native": "هَوُسَ", "rtl": True},
-    "he": {"code": "he", "name": "Hebrew", "native": "עברית", "rtl": True},
-    "hi": {"code": "hi", "name": "Hindi", "native": "हिन्दी", "rtl": False},
-    "ho": {"code": "ho", "name": "Hiri Motu", "native": "Hiri Motu", "rtl": False},
-    "hr": {"code": "hr", "name": "Croatian", "native": "Hrvatski", "rtl": False},
-    "ht": {"code": "ht", "name": "Haitian", "native": "Krèyol ayisyen", "rtl": False},
-    "hu": {"code": "hu", "name": "Hungarian", "native": "Magyar", "rtl": False},
-    "hy": {"code": "hy", "name": "Armenian", "native": "Հայերեն", "rtl": False},
-    "hz": {"code": "hz", "name": "Herero", "native": "Otsiherero", "rtl": False},
-    "ia": {"code": "ia", "name": "Interlingua", "native": "Interlingua", "rtl": False},
+    "cv": {"code": "cv", "name": "Chuvash", "native": "Чăваш", "alias": [], "rtl": False},
+    "cy": {"code": "cy", "name": "Welsh", "native": "Cymraeg", "alias": [], "rtl": False},
+    "da": {"code": "da", "name": "Danish", "native": "Dansk", "alias": ["dk"], "rtl": False},
+    "de": {"code": "de", "name": "German", "native": "Deutsch", "alias": [], "rtl": False},
+    "dv": {"code": "dv", "name": "Divehi", "native": "ދިވެހިބަސް", "alias": [], "rtl": True},
+    "dz": {"code": "dz", "name": "Dzongkha", "native": "ཇོང་ཁ", "alias": [], "rtl": False},
+    "ee": {"code": "ee", "name": "Ewe", "native": "Ɛʋɛ", "alias": [], "rtl": False},
+    "el": {"code": "el", "name": "Greek", "native": "Ελληνικά", "alias": ["gr"], "rtl": False},
+    "en": {"code": "en", "name": "English", "native": "English", "alias": ["uk","us"], "rtl": False},
+    "eo": {"code": "eo", "name": "Esperanto", "native": "Esperanto", "alias": [], "rtl": False},
+    "es": {"code": "es", "name": "Spanish", "native": "Español", "alias": [], "rtl": False},
+    "et": {"code": "et", "name": "Estonian", "native": "Eesti", "alias": [], "rtl": False},
+    "eu": {"code": "eu", "name": "Basque", "native": "Euskara", "alias": [], "rtl": False},
+    "fa": {"code": "fa", "name": "Persian", "native": "فارسی", "alias": [], "rtl": True},
+    "ff": {"code": "ff", "name": "Peul", "native": "Fulfulde", "alias": [], "rtl": False},
+    "fi": {"code": "fi", "name": "Finnish", "native": "Suomi", "alias": [], "rtl": False},
+    "fj": {"code": "fj", "name": "Fijian", "native": "Na Vosa Vakaviti", "alias": [], "rtl": False},
+    "fo": {"code": "fo", "name": "Faroese", "native": "Føroyskt", "alias": [], "rtl": False},
+    "fr": {"code": "fr", "name": "French", "native": "Français", "alias": [], "rtl": False},
+    "fy": {"code": "fy", "name": "West Frisian", "native": "Frysk", "alias": [], "rtl": False},
+    "ga": {"code": "ga", "name": "Irish", "native": "Gaeilge", "alias": [], "rtl": False},
+    "gd": {"code": "gd", "name": "Scottish Gaelic", "native": "Gàidhlig", "alias": [], "rtl": False},
+    "gl": {"code": "gl", "name": "Galician", "native": "Galego", "alias": [], "rtl": False},
+    "gn": {"code": "gn", "name": "Guarani", "native": "Avañe'ẽ", "alias": [], "rtl": False},
+    "gu": {"code": "gu", "name": "Gujarati", "native": "ગુજરાતી", "alias": [], "rtl": False},
+    "gv": {"code": "gv", "name": "Manx", "native": "Gaelg", "alias": [], "rtl": False},
+    "ha": {"code": "ha", "name": "Hausa", "native": "هَوُسَ", "alias": [], "rtl": True},
+    "he": {"code": "he", "name": "Hebrew", "native": "עברית", "alias": [], "rtl": True},
+    "hi": {"code": "hi", "name": "Hindi", "native": "हिन्दी", "alias": [], "rtl": False},
+    "ho": {"code": "ho", "name": "Hiri Motu", "native": "Hiri Motu", "alias": [], "rtl": False},
+    "hr": {"code": "hr", "name": "Croatian", "native": "Hrvatski", "alias": [], "rtl": False},
+    "ht": {"code": "ht", "name": "Haitian", "native": "Krèyol ayisyen", "alias": [], "rtl": False},
+    "hu": {"code": "hu", "name": "Hungarian", "native": "Magyar", "alias": [], "rtl": False},
+    "hy": {"code": "hy", "name": "Armenian", "native": "Հայերեն", "alias": [], "rtl": False},
+    "hz": {"code": "hz", "name": "Herero", "native": "Otsiherero", "alias": [], "rtl": False},
+    "ia": {"code": "ia", "name": "Interlingua", "native": "Interlingua", "alias": [], "rtl": False},
     "id": {
         "code": "id",
         "name": "Indonesian",
         "native": "Bahasa Indonesia",
+        "alias": [],
         "rtl": False,
     },
-    "ie": {"code": "ie", "name": "Interlingue", "native": "Interlingue", "rtl": False},
-    "ig": {"code": "ig", "name": "Igbo", "native": "Igbo", "rtl": False},
-    "ii": {"code": "ii", "name": "Sichuan Yi", "native": "ꆇꉙ / 四川彝语", "rtl": False},
-    "ik": {"code": "ik", "name": "Inupiak", "native": "Iñupiak", "rtl": False},
-    "io": {"code": "io", "name": "Ido", "native": "Ido", "rtl": False},
-    "is": {"code": "is", "name": "Icelandic", "native": "Íslenska", "rtl": False},
-    "it": {"code": "it", "name": "Italian", "native": "Italiano", "rtl": False},
-    "iu": {"code": "iu", "name": "Inuktitut", "native": "ᐃᓄᒃᑎᑐᑦ", "rtl": False},
-    "ja": {"code": "ja", "name": "Japanese", "native": "日本語", "rtl": False},
-    "jv": {"code": "jv", "name": "Javanese", "native": "Basa Jawa", "rtl": False},
-    "ka": {"code": "ka", "name": "Georgian", "native": "ქართული", "rtl": False},
-    "kg": {"code": "kg", "name": "Kongo", "native": "KiKongo", "rtl": False},
-    "ki": {"code": "ki", "name": "Kikuyu", "native": "Gĩkũyũ", "rtl": False},
-    "kj": {"code": "kj", "name": "Kuanyama", "native": "Kuanyama", "rtl": False},
-    "kk": {"code": "kk", "name": "Kazakh", "native": "Қазақша", "rtl": False},
-    "kl": {"code": "kl", "name": "Greenlandic", "native": "Kalaallisut", "rtl": False},
-    "km": {"code": "km", "name": "Cambodian", "native": "ភាសាខ្មែរ", "rtl": False},
-    "kn": {"code": "kn", "name": "Kannada", "native": "ಕನ್ನಡ", "rtl": False},
-    "ko": {"code": "ko", "name": "Korean", "native": "한국어", "rtl": False},
-    "kr": {"code": "kr", "name": "Kanuri", "native": "Kanuri", "rtl": False},
-    "ks": {"code": "ks", "name": "Kashmiri", "native": "कश्मीरी / كشميري", "rtl": True},
-    "ku": {"code": "ku", "name": "Kurdish", "native": "Kurdî / كوردی", "rtl": True},
-    "kv": {"code": "kv", "name": "Komi", "native": "Коми", "rtl": False},
-    "kw": {"code": "kw", "name": "Cornish", "native": "Kernewek", "rtl": False},
-    "ky": {"code": "ky", "name": "Kyrgyz", "native": "Кыргызча", "rtl": False},
-    "la": {"code": "la", "name": "Latin", "native": "Latina", "rtl": False},
+    "ie": {"code": "ie", "name": "Interlingue", "native": "Interlingue", "alias": [], "rtl": False},
+    "ig": {"code": "ig", "name": "Igbo", "native": "Igbo", "alias": [], "rtl": False},
+    "ii": {"code": "ii", "name": "Sichuan Yi", "native": "ꆇꉙ / 四川彝语", "alias": [], "rtl": False},
+    "ik": {"code": "ik", "name": "Inupiak", "native": "Iñupiak", "alias": [], "rtl": False},
+    "io": {"code": "io", "name": "Ido", "native": "Ido", "alias": [], "rtl": False},
+    "is": {"code": "is", "name": "Icelandic", "native": "Íslenska", "alias": [], "rtl": False},
+    "it": {"code": "it", "name": "Italian", "native": "Italiano", "alias": [], "rtl": False},
+    "iu": {"code": "iu", "name": "Inuktitut", "native": "ᐃᓄᒃᑎᑐᑦ", "alias": [], "rtl": False},
+    "ja": {"code": "ja", "name": "Japanese", "native": "日本語", "alias": ["jp"], "rtl": False},
+    "jv": {"code": "jv", "name": "Javanese", "native": "Basa Jawa", "alias": [], "rtl": False},
+    "ka": {"code": "ka", "name": "Georgian", "native": "ქართული", "alias": [], "rtl": False},
+    "kg": {"code": "kg", "name": "Kongo", "native": "KiKongo", "alias": [], "rtl": False},
+    "ki": {"code": "ki", "name": "Kikuyu", "native": "Gĩkũyũ", "alias": [], "rtl": False},
+    "kj": {"code": "kj", "name": "Kuanyama", "native": "Kuanyama", "alias": [], "rtl": False},
+    "kk": {"code": "kk", "name": "Kazakh", "native": "Қазақша", "alias": [], "rtl": False},
+    "kl": {"code": "kl", "name": "Greenlandic", "native": "Kalaallisut", "alias": [], "rtl": False},
+    "km": {"code": "km", "name": "Cambodian", "native": "ភាសាខ្មែរ", "alias": [], "rtl": False},
+    "kn": {"code": "kn", "name": "Kannada", "native": "ಕನ್ನಡ", "alias": [], "rtl": False},
+    "ko": {"code": "ko", "name": "Korean", "native": "한국어", "alias": [], "rtl": False},
+    "kr": {"code": "kr", "name": "Kanuri", "native": "Kanuri", "alias": [], "rtl": False},
+    "ks": {"code": "ks", "name": "Kashmiri", "native": "कश्मीरी / كشميري", "alias": [], "rtl": True},
+    "ku": {"code": "ku", "name": "Kurdish", "native": "Kurdî / كوردی", "alias": [], "rtl": True},
+    "kv": {"code": "kv", "name": "Komi", "native": "Коми", "alias": [], "rtl": False},
+    "kw": {"code": "kw", "name": "Cornish", "native": "Kernewek", "alias": [], "rtl": False},
+    "ky": {"code": "ky", "name": "Kyrgyz", "native": "Кыргызча", "alias": [], "rtl": False},
+    "la": {"code": "la", "name": "Latin", "native": "Latina", "alias": [], "rtl": False},
     "lb": {
         "code": "lb",
         "name": "Luxembourgish",
         "native": "Lëtzebuergesch",
+        "alias": [],
         "rtl": False,
     },
-    "lg": {"code": "lg", "name": "Ganda", "native": "Luganda", "rtl": False},
-    "li": {"code": "li", "name": "Limburgian", "native": "Limburgs", "rtl": False},
-    "ln": {"code": "ln", "name": "Lingala", "native": "Lingála", "rtl": False},
-    "lo": {"code": "lo", "name": "Laotian", "native": "ລາວ / Pha xa lao", "rtl": False},
-    "lt": {"code": "lt", "name": "Lithuanian", "native": "Lietuvių", "rtl": False},
-    "lu": {"code": "lu", "name": "Luba-Katanga", "native": "Tshiluba", "rtl": False},
-    "lv": {"code": "lv", "name": "Latvian", "native": "Latviešu", "rtl": False},
-    "mg": {"code": "mg", "name": "Malagasy", "native": "Malagasy", "rtl": False},
+    "lg": {"code": "lg", "name": "Ganda", "native": "Luganda", "alias": [], "rtl": False},
+    "li": {"code": "li", "name": "Limburgian", "native": "Limburgs", "alias": [], "rtl": False},
+    "ln": {"code": "ln", "name": "Lingala", "native": "Lingála", "alias": [], "rtl": False},
+    "lo": {"code": "lo", "name": "Laotian", "native": "ລາວ / Pha xa lao", "alias": [], "rtl": False},
+    "lt": {"code": "lt", "name": "Lithuanian", "native": "Lietuvių", "alias": [], "rtl": False},
+    "lu": {"code": "lu", "name": "Luba-Katanga", "native": "Tshiluba", "alias": [], "rtl": False},
+    "lv": {"code": "lv", "name": "Latvian", "native": "Latviešu", "alias": [], "rtl": False},
+    "mg": {"code": "mg", "name": "Malagasy", "native": "Malagasy", "alias": [], "rtl": False},
     "mh": {
         "code": "mh",
         "name": "Marshallese",
         "native": "Kajin Majel / Ebon",
+        "alias": [],
         "rtl": False,
     },
-    "mi": {"code": "mi", "name": "Maori", "native": "Māori", "rtl": False},
-    "mk": {"code": "mk", "name": "Macedonian", "native": "Македонски", "rtl": False},
-    "ml": {"code": "ml", "name": "Malayalam", "native": "മലയാളം", "rtl": False},
-    "mn": {"code": "mn", "name": "Mongolian", "native": "Монгол", "rtl": False},
-    "mo": {"code": "mo", "name": "Moldovan", "native": "Moldovenească", "rtl": False},
-    "mr": {"code": "mr", "name": "Marathi", "native": "मराठी", "rtl": False},
-    "ms": {"code": "ms", "name": "Malay", "native": "Bahasa Melayu", "rtl": False},
-    "mt": {"code": "mt", "name": "Maltese", "native": "bil-Malti", "rtl": False},
-    "my": {"code": "my", "name": "Burmese", "native": "မြန်မာစာ", "rtl": False},
-    "na": {"code": "na", "name": "Nauruan", "native": "Dorerin Naoero", "rtl": False},
+    "mi": {"code": "mi", "name": "Maori", "native": "Māori", "alias": [], "rtl": False},
+    "mk": {"code": "mk", "name": "Macedonian", "native": "Македонски", "alias": [], "rtl": False},
+    "ml": {"code": "ml", "name": "Malayalam", "native": "മലയാളം", "alias": [], "rtl": False},
+    "mn": {"code": "mn", "name": "Mongolian", "native": "Монгол", "alias": [], "rtl": False},
+    "mo": {"code": "mo", "name": "Moldovan", "native": "Moldovenească", "alias": [], "rtl": False},
+    "mr": {"code": "mr", "name": "Marathi", "native": "मराठी", "alias": [], "rtl": False},
+    "ms": {"code": "ms", "name": "Malay", "native": "Bahasa Melayu", "alias": [], "rtl": False},
+    "mt": {"code": "mt", "name": "Maltese", "native": "bil-Malti", "alias": [], "rtl": False},
+    "my": {"code": "my", "name": "Burmese", "native": "မြန်မာစာ", "alias": [], "rtl": False},
+    "na": {"code": "na", "name": "Nauruan", "native": "Dorerin Naoero", "alias": [], "rtl": False},
     "nb": {
         "code": "nb",
         "name": "Norwegian Bokmål",
         "native": "Norsk bokmål",
+        "alias": [],
         "rtl": False,
     },
-    "nd": {"code": "nd", "name": "North Ndebele", "native": "Sindebele", "rtl": False},
-    "ne": {"code": "ne", "name": "Nepali", "native": "नेपाली", "rtl": False},
-    "ng": {"code": "ng", "name": "Ndonga", "native": "Oshiwambo", "rtl": False},
-    "nl": {"code": "nl", "name": "Dutch", "native": "Nederlands", "rtl": False},
+    "nd": {"code": "nd", "name": "North Ndebele", "native": "Sindebele", "alias": [], "rtl": False},
+    "ne": {"code": "ne", "name": "Nepali", "native": "नेपाली", "alias": [], "rtl": False},
+    "ng": {"code": "ng", "name": "Ndonga", "native": "Oshiwambo", "alias": [], "rtl": False},
+    "nl": {"code": "nl", "name": "Dutch", "native": "Nederlands", "alias": [], "rtl": False},
     "nn": {
         "code": "nn",
         "name": "Norwegian Nynorsk",
         "native": "Norsk nynorsk",
+        "alias": [],
         "rtl": False,
     },
-    "no": {"code": "no", "name": "Norwegian", "native": "Norsk", "rtl": False},
-    "nr": {"code": "nr", "name": "South Ndebele", "native": "isiNdebele", "rtl": False},
-    "nv": {"code": "nv", "name": "Navajo", "native": "Diné bizaad", "rtl": False},
-    "ny": {"code": "ny", "name": "Chichewa", "native": "Chi-Chewa", "rtl": False},
-    "oc": {"code": "oc", "name": "Occitan", "native": "Occitan", "rtl": False},
+    "no": {"code": "no", "name": "Norwegian", "native": "Norsk", "alias": [], "rtl": False},
+    "nr": {"code": "nr", "name": "South Ndebele", "native": "isiNdebele", "alias": [], "rtl": False},
+    "nv": {"code": "nv", "name": "Navajo", "native": "Diné bizaad", "alias": [], "rtl": False},
+    "ny": {"code": "ny", "name": "Chichewa", "native": "Chi-Chewa", "alias": [], "rtl": False},
+    "oc": {"code": "oc", "name": "Occitan", "native": "Occitan", "alias": [], "rtl": False},
     "oj": {
         "code": "oj",
         "name": "Ojibwa",
         "native": "ᐊᓂᔑᓈᐯᒧᐎᓐ / Anishinaabemowin",
+        "alias": [],
         "rtl": False,
     },
-    "om": {"code": "om", "name": "Oromo", "native": "Oromoo", "rtl": False},
-    "or": {"code": "or", "name": "Oriya", "native": "ଓଡ଼ିଆ", "rtl": False},
+    "om": {"code": "om", "name": "Oromo", "native": "Oromoo", "alias": [], "rtl": False},
+    "or": {"code": "or", "name": "Oriya", "native": "ଓଡ଼ିଆ", "alias": [], "rtl": False},
     "os": {
         "code": "os",
         "name": "Ossetian / Ossetic",
         "native": "Иронау",
+        "alias": [],
         "rtl": False,
     },
     "pa": {
         "code": "pa",
         "name": "Panjabi / Punjabi",
         "native": "ਪੰਜਾਬੀ / पंजाबी / پنجابي",
+        "alias": [],
         "rtl": False,
     },
-    "pi": {"code": "pi", "name": "Pali", "native": "Pāli / पाऴि", "rtl": False},
-    "pl": {"code": "pl", "name": "Polish", "native": "Polski", "rtl": False},
-    "ps": {"code": "ps", "name": "Pashto", "native": "پښتو", "rtl": True},
-    "pt": {"code": "pt", "name": "Portuguese", "native": "Português", "rtl": False},
-    "qu": {"code": "qu", "name": "Quechua", "native": "Runa Simi", "rtl": False},
-    "rm": {"code": "rm", "name": "Raeto Romance", "native": "Rumantsch", "rtl": False},
-    "rn": {"code": "rn", "name": "Kirundi", "native": "Kirundi", "rtl": False},
-    "ro": {"code": "ro", "name": "Romanian", "native": "Română", "rtl": False},
-    "ru": {"code": "ru", "name": "Russian", "native": "Русский", "rtl": False},
-    "rw": {"code": "rw", "name": "Rwandi", "native": "Kinyarwandi", "rtl": False},
-    "sa": {"code": "sa", "name": "Sanskrit", "native": "संस्कृतम्", "rtl": False},
-    "sc": {"code": "sc", "name": "Sardinian", "native": "Sardu", "rtl": False},
-    "sd": {"code": "sd", "name": "Sindhi", "native": "सिनधि", "rtl": False},
-    "se": {"code": "se", "name": "Northern Sami", "native": "Sámegiella", "rtl": False},
-    "sg": {"code": "sg", "name": "Sango", "native": "Sängö", "rtl": False},
+    "pi": {"code": "pi", "name": "Pali", "native": "Pāli / पाऴि", "alias": [], "rtl": False},
+    "pl": {"code": "pl", "name": "Polish", "native": "Polski", "alias": [], "rtl": False},
+    "ps": {"code": "ps", "name": "Pashto", "native": "پښتو", "alias": [], "rtl": True},
+    "pt": {"code": "pt", "name": "Portuguese", "native": "Português", "alias": [], "rtl": False},
+    "qu": {"code": "qu", "name": "Quechua", "native": "Runa Simi", "alias": [], "rtl": False},
+    "rm": {"code": "rm", "name": "Raeto Romance", "native": "Rumantsch", "alias": [], "rtl": False},
+    "rn": {"code": "rn", "name": "Kirundi", "native": "Kirundi", "alias": [], "rtl": False},
+    "ro": {"code": "ro", "name": "Romanian", "native": "Română", "alias": [], "rtl": False},
+    "ru": {"code": "ru", "name": "Russian", "native": "Русский", "alias": [], "rtl": False},
+    "rw": {"code": "rw", "name": "Rwandi", "native": "Kinyarwandi", "alias": [], "rtl": False},
+    "sa": {"code": "sa", "name": "Sanskrit", "native": "संस्कृतम्", "alias": [], "rtl": False},
+    "sc": {"code": "sc", "name": "Sardinian", "native": "Sardu", "alias": [], "rtl": False},
+    "sd": {"code": "sd", "name": "Sindhi", "native": "सिनधि", "alias": [], "rtl": False},
+    "se": {"code": "se", "name": "Northern Sami", "native": "Sámegiella", "alias": [], "rtl": False},
+    "sg": {"code": "sg", "name": "Sango", "native": "Sängö", "alias": [], "rtl": False},
     "sh": {
         "code": "sh",
         "name": "Serbo-Croatian",
         "native": "Srpskohrvatski / Српскохрватски",
+        "alias": [],
         "rtl": False,
     },
-    "si": {"code": "si", "name": "Sinhalese", "native": "සිංහල", "rtl": False},
-    "sk": {"code": "sk", "name": "Slovak", "native": "Slovenčina", "rtl": False},
-    "sl": {"code": "sl", "name": "Slovenian", "native": "Slovenščina", "rtl": False},
-    "sm": {"code": "sm", "name": "Samoan", "native": "Gagana Samoa", "rtl": False},
-    "sn": {"code": "sn", "name": "Shona", "native": "chiShona", "rtl": False},
-    "so": {"code": "so", "name": "Somalia", "native": "Soomaaliga", "rtl": False},
-    "sq": {"code": "sq", "name": "Albanian", "native": "Shqip", "rtl": False},
-    "sr": {"code": "sr", "name": "Serbian", "native": "Српски", "rtl": False},
-    "ss": {"code": "ss", "name": "Swati", "native": "SiSwati", "rtl": False},
-    "st": {"code": "st", "name": "Southern Sotho", "native": "Sesotho", "rtl": False},
-    "su": {"code": "su", "name": "Sundanese", "native": "Basa Sunda", "rtl": False},
-    "sv": {"code": "sv", "name": "Swedish", "native": "Svenska", "rtl": False},
-    "sw": {"code": "sw", "name": "Swahili", "native": "Kiswahili", "rtl": False},
-    "ta": {"code": "ta", "name": "Tamil", "native": "தமிழ்", "rtl": False},
-    "te": {"code": "te", "name": "Telugu", "native": "తెలుగు", "rtl": False},
-    "tg": {"code": "tg", "name": "Tajik", "native": "Тоҷикӣ", "rtl": False},
-    "th": {"code": "th", "name": "Thai", "native": "ไทย / Phasa Thai", "rtl": False},
-    "ti": {"code": "ti", "name": "Tigrinya", "native": "ትግርኛ", "rtl": False},
-    "tk": {"code": "tk", "name": "Turkmen", "native": "Туркмен / تركمن", "rtl": False},
+    "si": {"code": "si", "name": "Sinhalese", "native": "සිංහල", "alias": [], "rtl": False},
+    "sk": {"code": "sk", "name": "Slovak", "native": "Slovenčina", "alias": [], "rtl": False},
+    "sl": {"code": "sl", "name": "Slovenian", "native": "Slovenščina", "alias": [], "rtl": False},
+    "sm": {"code": "sm", "name": "Samoan", "native": "Gagana Samoa", "alias": [], "rtl": False},
+    "sn": {"code": "sn", "name": "Shona", "native": "chiShona", "alias": [], "rtl": False},
+    "so": {"code": "so", "name": "Somalia", "native": "Soomaaliga", "alias": [], "rtl": False},
+    "sq": {"code": "sq", "name": "Albanian", "native": "Shqip", "alias": [], "rtl": False},
+    "sr": {"code": "sr", "name": "Serbian", "native": "Српски", "alias": [], "rtl": False},
+    "ss": {"code": "ss", "name": "Swati", "native": "SiSwati", "alias": [], "rtl": False},
+    "st": {"code": "st", "name": "Southern Sotho", "native": "Sesotho", "alias": [], "rtl": False},
+    "su": {"code": "su", "name": "Sundanese", "native": "Basa Sunda", "alias": [], "rtl": False},
+    "sv": {"code": "sv", "name": "Swedish", "native": "Svenska", "alias": [], "rtl": False},
+    "sw": {"code": "sw", "name": "Swahili", "native": "Kiswahili", "alias": [], "rtl": False},
+    "ta": {"code": "ta", "name": "Tamil", "native": "தமிழ்", "alias": [], "rtl": False},
+    "te": {"code": "te", "name": "Telugu", "native": "తెలుగు", "alias": [], "rtl": False},
+    "tg": {"code": "tg", "name": "Tajik", "native": "Тоҷикӣ", "alias": [], "rtl": False},
+    "th": {"code": "th", "name": "Thai", "native": "ไทย / Phasa Thai", "alias": [], "rtl": False},
+    "ti": {"code": "ti", "name": "Tigrinya", "native": "ትግርኛ", "alias": [], "rtl": False},
+    "tk": {"code": "tk", "name": "Turkmen", "native": "Туркмен / تركمن", "alias": [], "rtl": False},
     "tl": {
         "code": "tl",
         "name": "Tagalog / Filipino",
         "native": "Tagalog",
+        "alias": [],
         "rtl": False,
     },
-    "tn": {"code": "tn", "name": "Tswana", "native": "Setswana", "rtl": False},
-    "to": {"code": "to", "name": "Tonga", "native": "Lea Faka-Tonga", "rtl": False},
-    "tr": {"code": "tr", "name": "Turkish", "native": "Türkçe", "rtl": False},
-    "ts": {"code": "ts", "name": "Tsonga", "native": "Xitsonga", "rtl": False},
-    "tt": {"code": "tt", "name": "Tatar", "native": "Tatarça", "rtl": False},
-    "tw": {"code": "tw", "name": "Twi", "native": "Twi", "rtl": False},
-    "ty": {"code": "ty", "name": "Tahitian", "native": "Reo Mā`ohi", "rtl": False},
+    "tn": {"code": "tn", "name": "Tswana", "native": "Setswana", "alias": [], "rtl": False},
+    "to": {"code": "to", "name": "Tonga", "native": "Lea Faka-Tonga", "alias": [], "rtl": False},
+    "tr": {"code": "tr", "name": "Turkish", "native": "Türkçe", "alias": [], "rtl": False},
+    "ts": {"code": "ts", "name": "Tsonga", "native": "Xitsonga", "alias": [], "rtl": False},
+    "tt": {"code": "tt", "name": "Tatar", "native": "Tatarça", "alias": [], "rtl": False},
+    "tw": {"code": "tw", "name": "Twi", "native": "Twi", "alias": [], "rtl": False},
+    "ty": {"code": "ty", "name": "Tahitian", "native": "Reo Mā`ohi", "alias": [], "rtl": False},
     "ug": {
         "code": "ug",
         "name": "Uyghur",
         "native": "Uyƣurqə / ئۇيغۇرچە",
+        "alias": [],
         "rtl": False,
     },
-    "uk": {"code": "uk", "name": "Ukrainian", "native": "Українська", "rtl": False},
-    "ur": {"code": "ur", "name": "Urdu", "native": "اردو", "rtl": True},
-    "uz": {"code": "uz", "name": "Uzbek", "native": "Ўзбек", "rtl": False},
-    "ve": {"code": "ve", "name": "Venda", "native": "Tshivenḓa", "rtl": False},
-    "vi": {"code": "vi", "name": "Vietnamese", "native": "Tiếng Việt", "rtl": False},
-    "vo": {"code": "vo", "name": "Volapük", "native": "Volapük", "rtl": False},
-    "wa": {"code": "wa", "name": "Walloon", "native": "Walon", "rtl": False},
-    "wo": {"code": "wo", "name": "Wolof", "native": "Wollof", "rtl": False},
-    "xh": {"code": "xh", "name": "Xhosa", "native": "isiXhosa", "rtl": False},
-    "yi": {"code": "yi", "name": "Yiddish", "native": "ייִדיש", "rtl": True},
-    "yo": {"code": "yo", "name": "Yoruba", "native": "Yorùbá", "rtl": False},
-    "za": {"code": "za", "name": "Zhuang", "native": "Cuengh / Tôô / 壮语", "rtl": False},
-    "zh": {"code": "zh", "name": "Chinese", "native": "中文", "rtl": False},
-    "zu": {"code": "zu", "name": "Zulu", "native": "isiZulu", "rtl": False},
+    "uk": {"code": "uk", "name": "Ukrainian", "native": "Українська", "alias": [], "rtl": False},
+    "ur": {"code": "ur", "name": "Urdu", "native": "اردو", "alias": [], "rtl": True},
+    "uz": {"code": "uz", "name": "Uzbek", "native": "Ўзбек", "alias": [], "rtl": False},
+    "ve": {"code": "ve", "name": "Venda", "native": "Tshivenḓa", "alias": [], "rtl": False},
+    "vi": {"code": "vi", "name": "Vietnamese", "native": "Tiếng Việt", "alias": [], "rtl": False},
+    "vo": {"code": "vo", "name": "Volapük", "native": "Volapük", "alias": [], "rtl": False},
+    "wa": {"code": "wa", "name": "Walloon", "native": "Walon", "alias": [], "rtl": False},
+    "wo": {"code": "wo", "name": "Wolof", "native": "Wollof", "alias": [], "rtl": False},
+    "xh": {"code": "xh", "name": "Xhosa", "native": "isiXhosa", "alias": [], "rtl": False},
+    "yi": {"code": "yi", "name": "Yiddish", "native": "ייִדיש", "alias": [], "rtl": True},
+    "yo": {"code": "yo", "name": "Yoruba", "native": "Yorùbá", "alias": [], "rtl": False},
+    "za": {"code": "za", "name": "Zhuang", "native": "Cuengh / Tôô / 壮语", "alias": [], "rtl": False},
+    "zh": {"code": "zh", "name": "Chinese", "native": "中文", "alias": [], "rtl": False},
+    "zu": {"code": "zu", "name": "Zulu", "native": "isiZulu", "alias": [], "rtl": False},
 }
 
 CC_DICT = {
@@ -2783,6 +2797,7 @@ class Language(AsDictMixin):
     code: str
     name: str
     native: Optional[str]
+    alias: List[str] = field(default_factory=list)
     rtl: bool = field(default=False)
 
     def __getitem__(self, key):
@@ -2790,6 +2805,97 @@ class Language(AsDictMixin):
             return getattr(self, key)
         else:
             raise NotImplementedError
+
+
+@dataclass
+class Languages(AsDictMixin):
+    """
+    A Languages holds:
+    * `worldwide` a list of Language representation
+    """
+
+    worldwide: List[Language] = field(default_factory=list)
+
+    def __post_init__(self) -> Literal[None]:
+        self.worldwide.append( Language(code="XX", name="Unknown", native="Unknown", rtl=False ) )
+        for code, data in LL_DICT.items():
+            name, native, rtl = [
+                data.get(_)
+                for _ in [
+                    "name",
+                    "native",
+                    "rtl",
+                ]
+            ]
+            self.worldwide.append( Language(code=code, name=name, native=native, rtl=rtl ) )
+
+    def __getitem__(self, key):
+        if isinstance(self, Languages) or issubclass(self, Languages):
+            return getattr(self, key)
+        else:
+            raise NotImplementedError
+
+    def __iter__(self, **kwargs: dict) -> Iterator[Language]:
+        for language in self.worldwide:
+            yield language
+
+
+    def __find(
+        self,
+        attr: str,
+        value: str,
+        *args: list,
+        **kwargs: dict,
+    ) -> List[Optional[Language]]:
+        def match(current: str, value: str) -> List[Optional[Language]]:
+            if isinstance(current, str):
+                return lang if value.lower() == current.lower() else None
+            elif isinstance(current, bool):
+                return lang if value == current else None
+            elif isinstance(current, list):
+                return lang if value in current else None
+
+        result = []
+        for lang in self:
+            if match(getattr(lang, attr), value):
+                result.append(lang)
+
+        return result
+
+    def __unknown(self):
+        return self.__find("code", "XX")[0]
+
+    def find_by_code(self, **kwargs: dict) -> Language:
+        value = kwargs.get("value", "")
+        result = self.__find("code", value)
+        return result[0] if result else self.__unknown()
+
+    def find_by_name(self, **kwargs: dict) -> Language:
+        value = kwargs.get("value", "")
+        result = self.__find("name", value)
+        return result[0] if result else self.__unknown()
+
+    def find_by_native(self, **kwargs: dict) -> Language:
+        value = kwargs.get("value", "")
+        result = self.__find("native", value)
+        return result[0] if result else self.__unknown()
+
+    def find_by_alias(self, **kwargs: dict) -> Language:
+        value = kwargs.get("value", "")
+        result = self.__find("alias", value)
+        return result[0] if result else self.__unknown()
+
+    def find_by_rtl(self, **kwargs: dict) -> List[Language]:
+        value = kwargs.get("value", True)
+        return self.__find("rtl", value)
+
+    def find(self, **kwargs: dict) -> List[Language]:
+        finders = [
+            getattr(self, f"find_by_{name}")
+            for name in ["code", "name", "native", "rtl"]
+        ]
+
+        return list(filter(lambda c: c, [finder(**kwargs) for finder in finders]))
 
 
 @dataclass
@@ -2832,6 +2938,18 @@ class World(AsDictMixin):
     countries: Optional[List[Country]] = field(default_factory=list)
 
     def __post_init__(self, **kwargs: dict) -> Literal[None]:
+        self.countries.append(
+            Country(
+                code="XX",
+                name="Unknown",
+                native="Unknown",
+                year="0000",
+                phone=[],
+                tld=[],
+                alias=[],
+                languages=[],
+            )
+        )
         for code, data in CC_DICT.items():
             name, native, year, phone, tld, alias, languages = [
                 data.get(_)
@@ -2846,7 +2964,7 @@ class World(AsDictMixin):
                 ]
             ]
 
-            langguages = [Language(**LL_DICT.get(_)) for _ in data.get("languages")]
+            languages = [Language(**LL_DICT.get(_)) for _ in data.get("languages")]
             self.countries.append(
                 Country(
                     code=code,
@@ -2900,31 +3018,34 @@ class World(AsDictMixin):
 
         return result
 
-    def find_by_code(self, **kwargs: dict) -> Optional[List[Country]]:
+    def __unknown(self):
+        return self.__find("code", "XX", True, False)[0]
+
+    def find_by_code(self, **kwargs: dict) -> List[Country]:
         value = kwargs.get("value", None)
         strict = kwargs.get("strict", True)
         result = self.__find("code", value, False, False)
-        return result[0] if result else None
+        return result[0] if result else self.__unknown()
 
-    def find_by_name(self, **kwargs: dict) -> Optional[Country]:
+    def find_by_name(self, **kwargs: dict) -> Country:
         value = kwargs.get("value", None)
         strict = kwargs.get("strict", True)
         result = self.__find("name", value, strict, False)
-        return result[0] if result else None
+        return result[0] if result else self.__unknown()
 
-    def find_by_tld(self, **kwargs: dict) -> Optional[Country]:
+    def find_by_tld(self, **kwargs: dict) -> Country:
         value = kwargs.get("value", None)
         strict = kwargs.get("strict", True)
         result = self.__find("tld", value, strict, False)
-        return result[0] if result else None
+        return result[0] if result else self.__unknown()
 
-    def find_by_alias(self, **kwargs: dict) -> Optional[Country]:
+    def find_by_alias(self, **kwargs: dict) -> Country:
         value = kwargs.get("value", None)
         strict = kwargs.get("strict", True)
         result = self.__find("alias", value, strict, False)
-        return result[0] if result else None
+        return result[0] if result else self.__unknown()
 
-    def find_by_language(self, **kwargs: dict) -> Optional[List[Country]]:
+    def find_by_language(self, **kwargs: dict) -> List[Country]:
         value = kwargs.get("value", None)
         strict = kwargs.get("strict", True)
         multiple = kwargs.get("multiple", True)
