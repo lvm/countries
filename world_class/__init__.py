@@ -52,7 +52,7 @@ LL_DICT = {
     "ch": {"code": "ch", "name": "Chamorro", "native": "Chamoru", "alias": [], "rtl": False},
     "co": {"code": "co", "name": "Corsican", "native": "Corsu", "alias": [], "rtl": False},
     "cr": {"code": "cr", "name": "Cree", "native": "Nehiyaw", "alias": [], "rtl": False},
-    "cs": {"code": "cs", "name": "Czech", "native": "Čeština", "alias": [], "rtl": False},
+    "cs": {"code": "cs", "name": "Czech", "native": "Čeština", "alias": ["cz"], "rtl": False},
     "cu": {
         "code": "cu",
         "name": "Old Church Slavonic / Old Bulgarian",
