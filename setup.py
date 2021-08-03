@@ -6,7 +6,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="world-class",
-    version="0.0.8",
+    version="0.0.9",
     description="A mixture of ISO 3166-1 Alpha-2 Country codes and ISO 639-1 Language codes.",
     long_description=README,
     long_description_content_type="text/markdown",
