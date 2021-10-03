@@ -6,8 +6,8 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="world-class",
-    version="0.0.9",
-    description="A mixture of ISO 3166-1 Alpha-2 Country codes and ISO 639-1 Language codes.",
+    version="0.1.0",
+    description="A mixture of ISO 3166-1 Alpha-2 Country codes, ISO 639-1 Language codes and ISO-4217 Currency codes.",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/lvm/world-class",
@@ -17,7 +17,7 @@ setup(
     classifiers=[
         "License :: OSI Approved :: BSD License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
     ],
     packages=["world_class"],
     include_package_data=True,
