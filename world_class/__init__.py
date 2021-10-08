@@ -4869,8 +4869,6 @@ class World(AsDictMixin):
             ]
 
             languages = [Language(**LL_DICT.get(_)) for _ in data.get("languages")]
-            print(name)
-            print(">>>", [CURR_DICT.get(_) for _ in data.get("currencies")])
             currencies = [Currency(**CURR_DICT.get(_)) for _ in data.get("currencies")]
             self.countries.append(
                 Country(
@@ -4959,7 +4957,6 @@ class World(AsDictMixin):
         multiple = kwargs.get("multiple", True)
         result = self.__find("languages", value, strict, multiple)
         if kwargs.get("exact", False):
-            print(result)
             result = [_ for _ in result if _.languages == [value]]
         return result
 
