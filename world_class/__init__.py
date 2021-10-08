@@ -4582,8 +4582,15 @@ CC_DICT = {
 
 
 class AsDictMixin(object):
-    def as_dict(self):
+    def _asdict(self):
         return asdict(self)
+
+    def asdict(self):
+        return self._asdict()
+
+    def as_dict(self):
+        "Legacy"
+        return self._asdict()
 
 
 @dataclass
@@ -4813,6 +4820,7 @@ class Country(AsDictMixin):
     * `tld` Top Level Domain.
     * `alias` An alternative `code`.
     * `language` A list of ISO-639-1 Representations.
+    * `currencies` A list of 3-Letter ISO 4217 Code.
     """
 
     code: str
