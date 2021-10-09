@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
 from typing import List
+from typing import Type
 from typing import Union
 from typing import Literal
 from typing import Optional
+
 from dataclasses import field
 from dataclasses import asdict
+from dataclasses import InitVar
 from dataclasses import dataclass
 
 try:
@@ -1361,6 +1364,15 @@ CURR_DICT = {
     "TVD": {"code": "TVD", "symbol": "$", "name": "Tuvaluan dollar"},
 }
 
+CO_DICT = {
+    "AS": {"code": "AS", "name": "Asia"},
+    "EU": {"code": "EU", "name": "Europe"},
+    "AN": {"code": "AN", "name": "Antarctica"},
+    "AF": {"code": "AF", "name": "Africa"},
+    "OC": {"code": "OC", "name": "Oceania"},
+    "NA": {"code": "NA", "name": "North America"},
+    "SA": {"code": "SA", "name": "South America"},
+}
 
 CC_DICT = {
     "AD": {
@@ -1372,9 +1384,8 @@ CC_DICT = {
         "tld": [".ad"],
         "alias": [""],
         "languages": ["ca"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "AE": {
         "code": "AE",
@@ -1385,9 +1396,8 @@ CC_DICT = {
         "tld": [".ae"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "AED",
-        ],
+        "currencies": ["AED"],
+        "continent": "AS",
     },
     "AF": {
         "code": "AF",
@@ -1398,9 +1408,8 @@ CC_DICT = {
         "tld": [".af"],
         "alias": [""],
         "languages": ["ps", "uz", "tk"],
-        "currencies": [
-            "AFN",
-        ],
+        "currencies": ["AFN"],
+        "continent": "AS",
     },
     "AG": {
         "code": "AG",
@@ -1411,9 +1420,8 @@ CC_DICT = {
         "tld": [".ag"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "XCD",
-        ],
+        "currencies": ["XCD"],
+        "continent": "NA",
     },
     "AI": {
         "code": "AI",
@@ -1424,9 +1432,8 @@ CC_DICT = {
         "tld": [".ai"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "XCD",
-        ],
+        "currencies": ["XCD"],
+        "continent": "NA",
     },
     "AL": {
         "code": "AL",
@@ -1437,9 +1444,8 @@ CC_DICT = {
         "tld": [".al"],
         "alias": [""],
         "languages": ["sq"],
-        "currencies": [
-            "ALL",
-        ],
+        "currencies": ["ALL"],
+        "continent": "EU",
     },
     "AM": {
         "code": "AM",
@@ -1450,9 +1456,8 @@ CC_DICT = {
         "tld": [".am"],
         "alias": [""],
         "languages": ["hy", "ru"],
-        "currencies": [
-            "AMD",
-        ],
+        "currencies": ["AMD"],
+        "continent": "AS",
     },
     "AO": {
         "code": "AO",
@@ -1463,9 +1468,8 @@ CC_DICT = {
         "tld": [".ao"],
         "alias": [""],
         "languages": ["pt"],
-        "currencies": [
-            "AOA",
-        ],
+        "currencies": ["AOA"],
+        "continent": "AF",
     },
     "AQ": {
         "code": "AQ",
@@ -1477,6 +1481,7 @@ CC_DICT = {
         "alias": [""],
         "languages": [],
         "currencies": [],
+        "continent": "AN",
     },
     "AR": {
         "code": "AR",
@@ -1487,9 +1492,8 @@ CC_DICT = {
         "tld": [".ar"],
         "alias": [""],
         "languages": ["es", "gn"],
-        "currencies": [
-            "ARS",
-        ],
+        "currencies": ["ARS"],
+        "continent": "SA",
     },
     "AS": {
         "code": "AS",
@@ -1500,9 +1504,8 @@ CC_DICT = {
         "tld": [".as"],
         "alias": [""],
         "languages": ["en", "sm"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "OC",
     },
     "AT": {
         "code": "AT",
@@ -1513,9 +1516,8 @@ CC_DICT = {
         "tld": [".at"],
         "alias": [""],
         "languages": ["de"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "AU": {
         "code": "AU",
@@ -1526,9 +1528,8 @@ CC_DICT = {
         "tld": [".au"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "AUD",
-        ],
+        "currencies": ["AUD"],
+        "continent": "OC",
     },
     "AW": {
         "code": "AW",
@@ -1539,9 +1540,8 @@ CC_DICT = {
         "tld": [".aw"],
         "alias": [""],
         "languages": ["nl", "pa"],
-        "currencies": [
-            "AWG",
-        ],
+        "currencies": ["AWG"],
+        "continent": "NA",
     },
     "AX": {
         "code": "AX",
@@ -1552,9 +1552,8 @@ CC_DICT = {
         "tld": [".ax"],
         "alias": [""],
         "languages": ["sv"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "AZ": {
         "code": "AZ",
@@ -1565,9 +1564,8 @@ CC_DICT = {
         "tld": [".az"],
         "alias": [""],
         "languages": ["az"],
-        "currencies": [
-            "AZN",
-        ],
+        "currencies": ["AZN"],
+        "continent": "AS",
     },
     "BA": {
         "code": "BA",
@@ -1578,9 +1576,8 @@ CC_DICT = {
         "tld": [".ba"],
         "alias": [""],
         "languages": ["bs", "hr", "sr"],
-        "currencies": [
-            "BAM",
-        ],
+        "currencies": ["BAM"],
+        "continent": "EU",
     },
     "BB": {
         "code": "BB",
@@ -1591,9 +1588,8 @@ CC_DICT = {
         "tld": [".bb"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "BBD",
-        ],
+        "currencies": ["BBD"],
+        "continent": "NA",
     },
     "BD": {
         "code": "BD",
@@ -1604,9 +1600,8 @@ CC_DICT = {
         "tld": [".bd"],
         "alias": [""],
         "languages": ["bn"],
-        "currencies": [
-            "BDT",
-        ],
+        "currencies": ["BDT"],
+        "continent": "AS",
     },
     "BE": {
         "code": "BE",
@@ -1617,9 +1612,8 @@ CC_DICT = {
         "tld": [".be"],
         "alias": [""],
         "languages": ["nl", "fr", "de"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "BF": {
         "code": "BF",
@@ -1630,9 +1624,8 @@ CC_DICT = {
         "tld": [".bf"],
         "alias": [""],
         "languages": ["fr", "ff"],
-        "currencies": [
-            "XOF",
-        ],
+        "currencies": ["XOF"],
+        "continent": "AF",
     },
     "BG": {
         "code": "BG",
@@ -1643,9 +1636,8 @@ CC_DICT = {
         "tld": [".bg"],
         "alias": [""],
         "languages": ["bg"],
-        "currencies": [
-            "BGN",
-        ],
+        "currencies": ["BGN"],
+        "continent": "EU",
     },
     "BH": {
         "code": "BH",
@@ -1656,9 +1648,8 @@ CC_DICT = {
         "tld": [".bh"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "BHD",
-        ],
+        "currencies": ["BHD"],
+        "continent": "AS",
     },
     "BI": {
         "code": "BI",
@@ -1669,9 +1660,8 @@ CC_DICT = {
         "tld": [".bi"],
         "alias": [""],
         "languages": ["fr", "rn"],
-        "currencies": [
-            "BIF",
-        ],
+        "currencies": ["BIF"],
+        "continent": "AF",
     },
     "BJ": {
         "code": "BJ",
@@ -1682,9 +1672,8 @@ CC_DICT = {
         "tld": [".bj"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "XOF",
-        ],
+        "currencies": ["XOF"],
+        "continent": "AF",
     },
     "BL": {
         "code": "BL",
@@ -1695,9 +1684,8 @@ CC_DICT = {
         "tld": [".bl"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "NA",
     },
     "BM": {
         "code": "BM",
@@ -1708,9 +1696,8 @@ CC_DICT = {
         "tld": [".bm"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "BMD",
-        ],
+        "currencies": ["BMD"],
+        "continent": "NA",
     },
     "BN": {
         "code": "BN",
@@ -1721,9 +1708,8 @@ CC_DICT = {
         "tld": [".bn"],
         "alias": [""],
         "languages": ["ms"],
-        "currencies": [
-            "BND",
-        ],
+        "currencies": ["BND"],
+        "continent": "AS",
     },
     "BO": {
         "code": "BO",
@@ -1734,9 +1720,8 @@ CC_DICT = {
         "tld": [".bo"],
         "alias": [""],
         "languages": ["es", "ay", "qu"],
-        "currencies": [
-            "BOB",
-        ],
+        "currencies": ["BOB"],
+        "continent": "SA",
     },
     "BQ": {
         "code": "BQ",
@@ -1747,9 +1732,8 @@ CC_DICT = {
         "tld": [".bq"],
         "alias": [""],
         "languages": ["nl"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "NA",
     },
     "BR": {
         "code": "BR",
@@ -1760,9 +1744,8 @@ CC_DICT = {
         "tld": [".br"],
         "alias": [""],
         "languages": ["pt"],
-        "currencies": [
-            "BRL",
-        ],
+        "currencies": ["BRL"],
+        "continent": "SA",
     },
     "BS": {
         "code": "BS",
@@ -1773,9 +1756,8 @@ CC_DICT = {
         "tld": [".bs"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "BSD",
-        ],
+        "currencies": ["BSD"],
+        "continent": "NA",
     },
     "BT": {
         "code": "BT",
@@ -1787,6 +1769,7 @@ CC_DICT = {
         "alias": [""],
         "languages": ["dz"],
         "currencies": ["BTN", "INR"],
+        "continent": "AS",
     },
     "BV": {
         "code": "BV",
@@ -1797,9 +1780,8 @@ CC_DICT = {
         "tld": [".bv"],
         "alias": [""],
         "languages": ["no", "nb", "nn"],
-        "currencies": [
-            "NOK",
-        ],
+        "currencies": ["NOK"],
+        "continent": "AN",
     },
     "BW": {
         "code": "BW",
@@ -1810,9 +1792,8 @@ CC_DICT = {
         "tld": [".bw"],
         "alias": [""],
         "languages": ["en", "tn"],
-        "currencies": [
-            "BWP",
-        ],
+        "currencies": ["BWP"],
+        "continent": "AF",
     },
     "BY": {
         "code": "BY",
@@ -1823,9 +1804,8 @@ CC_DICT = {
         "tld": [".by"],
         "alias": [""],
         "languages": ["be", "ru"],
-        "currencies": [
-            "BYR",
-        ],
+        "currencies": ["BYR"],
+        "continent": "EU",
     },
     "BZ": {
         "code": "BZ",
@@ -1836,9 +1816,8 @@ CC_DICT = {
         "tld": [".bz"],
         "alias": [""],
         "languages": ["en", "es"],
-        "currencies": [
-            "BZD",
-        ],
+        "currencies": ["BZD"],
+        "continent": "NA",
     },
     "CA": {
         "code": "CA",
@@ -1849,9 +1828,8 @@ CC_DICT = {
         "tld": [".ca"],
         "alias": [""],
         "languages": ["en", "fr"],
-        "currencies": [
-            "CAD",
-        ],
+        "currencies": ["CAD"],
+        "continent": "NA",
     },
     "CC": {
         "code": "CC",
@@ -1862,9 +1840,8 @@ CC_DICT = {
         "tld": [".cc"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "AUD",
-        ],
+        "currencies": ["AUD"],
+        "continent": "AS",
     },
     "CD": {
         "code": "CD",
@@ -1875,9 +1852,8 @@ CC_DICT = {
         "tld": [".cd"],
         "alias": [""],
         "languages": ["fr", "ln", "kg", "sw", "lu"],
-        "currencies": [
-            "CDF",
-        ],
+        "currencies": ["CDF"],
+        "continent": "AF",
     },
     "CF": {
         "code": "CF",
@@ -1888,9 +1864,8 @@ CC_DICT = {
         "tld": [".cf"],
         "alias": [""],
         "languages": ["fr", "sg"],
-        "currencies": [
-            "XAF",
-        ],
+        "currencies": ["XAF"],
+        "continent": "AF",
     },
     "CG": {
         "code": "CG",
@@ -1901,9 +1876,8 @@ CC_DICT = {
         "tld": [".cg"],
         "alias": [""],
         "languages": ["fr", "ln"],
-        "currencies": [
-            "XAF",
-        ],
+        "currencies": ["XAF"],
+        "continent": "AF",
     },
     "CH": {
         "code": "CH",
@@ -1914,9 +1888,8 @@ CC_DICT = {
         "tld": [".ch"],
         "alias": [""],
         "languages": ["de", "fr", "it"],
-        "currencies": [
-            "CHF",
-        ],
+        "currencies": ["CHF"],
+        "continent": "EU",
     },
     "CI": {
         "code": "CI",
@@ -1927,9 +1900,8 @@ CC_DICT = {
         "tld": [".ci"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "XOF",
-        ],
+        "currencies": ["XOF"],
+        "continent": "AF",
     },
     "CK": {
         "code": "CK",
@@ -1940,9 +1912,8 @@ CC_DICT = {
         "tld": [".ck"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "NZD",
-        ],
+        "currencies": ["NZD"],
+        "continent": "OC",
     },
     "CL": {
         "code": "CL",
@@ -1953,9 +1924,8 @@ CC_DICT = {
         "tld": [".cl"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "CLP",
-        ],
+        "currencies": ["CLP"],
+        "continent": "SA",
     },
     "CM": {
         "code": "CM",
@@ -1966,9 +1936,8 @@ CC_DICT = {
         "tld": [".cm"],
         "alias": [""],
         "languages": ["en", "fr"],
-        "currencies": [
-            "XAF",
-        ],
+        "currencies": ["XAF"],
+        "continent": "AF",
     },
     "CN": {
         "code": "CN",
@@ -1979,9 +1948,8 @@ CC_DICT = {
         "tld": [".cn"],
         "alias": [""],
         "languages": ["zh"],
-        "currencies": [
-            "CNY",
-        ],
+        "currencies": ["CNY"],
+        "continent": "AS",
     },
     "CO": {
         "code": "CO",
@@ -1992,9 +1960,8 @@ CC_DICT = {
         "tld": [".co"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "COP",
-        ],
+        "currencies": ["COP"],
+        "continent": "SA",
     },
     "CR": {
         "code": "CR",
@@ -2005,9 +1972,8 @@ CC_DICT = {
         "tld": [".cr"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "CRC",
-        ],
+        "currencies": ["CRC"],
+        "continent": "NA",
     },
     "CU": {
         "code": "CU",
@@ -2019,6 +1985,7 @@ CC_DICT = {
         "alias": [""],
         "languages": ["es"],
         "currencies": ["CUC"],
+        "continent": "NA",
     },
     "CV": {
         "code": "CV",
@@ -2029,9 +1996,8 @@ CC_DICT = {
         "tld": [".cv"],
         "alias": [""],
         "languages": ["pt"],
-        "currencies": [
-            "CVE",
-        ],
+        "currencies": ["CVE"],
+        "continent": "AF",
     },
     "CW": {
         "code": "CW",
@@ -2042,9 +2008,8 @@ CC_DICT = {
         "tld": [".cw"],
         "alias": [""],
         "languages": ["nl", "pa", "en"],
-        "currencies": [
-            "ANG",
-        ],
+        "currencies": ["ANG"],
+        "continent": "NA",
     },
     "CX": {
         "code": "CX",
@@ -2055,9 +2020,8 @@ CC_DICT = {
         "tld": [".cx"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "AUD",
-        ],
+        "currencies": ["AUD"],
+        "continent": "AS",
     },
     "CY": {
         "code": "CY",
@@ -2068,9 +2032,8 @@ CC_DICT = {
         "tld": [".cy"],
         "alias": [""],
         "languages": ["el", "tr", "hy"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "AS",
     },
     "CZ": {
         "code": "CZ",
@@ -2081,9 +2044,8 @@ CC_DICT = {
         "tld": [".cz"],
         "alias": [""],
         "languages": ["cs", "sk"],
-        "currencies": [
-            "CZK",
-        ],
+        "currencies": ["CZK"],
+        "continent": "EU",
     },
     "DE": {
         "code": "DE",
@@ -2094,9 +2056,8 @@ CC_DICT = {
         "tld": [".de"],
         "alias": [""],
         "languages": ["de"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "DJ": {
         "code": "DJ",
@@ -2107,9 +2068,8 @@ CC_DICT = {
         "tld": [".dj"],
         "alias": [""],
         "languages": ["fr", "ar"],
-        "currencies": [
-            "DJF",
-        ],
+        "currencies": ["DJF"],
+        "continent": "AF",
     },
     "DK": {
         "code": "DK",
@@ -2120,9 +2080,8 @@ CC_DICT = {
         "tld": [".dk"],
         "alias": [""],
         "languages": ["da"],
-        "currencies": [
-            "DKK",
-        ],
+        "currencies": ["DKK"],
+        "continent": "EU",
     },
     "DM": {
         "code": "DM",
@@ -2133,9 +2092,8 @@ CC_DICT = {
         "tld": [".dm"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "XCD",
-        ],
+        "currencies": ["XCD"],
+        "continent": "NA",
     },
     "DO": {
         "code": "DO",
@@ -2146,9 +2104,8 @@ CC_DICT = {
         "tld": [".do"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "DOP",
-        ],
+        "currencies": ["DOP"],
+        "continent": "NA",
     },
     "DZ": {
         "code": "DZ",
@@ -2159,9 +2116,8 @@ CC_DICT = {
         "tld": [".dz"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "DZD",
-        ],
+        "currencies": ["DZD"],
+        "continent": "AF",
     },
     "EC": {
         "code": "EC",
@@ -2172,9 +2128,8 @@ CC_DICT = {
         "tld": [".ec"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "SA",
     },
     "EE": {
         "code": "EE",
@@ -2185,9 +2140,8 @@ CC_DICT = {
         "tld": [".ee"],
         "alias": [""],
         "languages": ["et"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "EG": {
         "code": "EG",
@@ -2198,9 +2152,8 @@ CC_DICT = {
         "tld": [".eg"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "EGP",
-        ],
+        "currencies": ["EGP"],
+        "continent": "AF",
     },
     "EH": {
         "code": "EH",
@@ -2211,9 +2164,8 @@ CC_DICT = {
         "tld": [""],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "MAD",
-        ],
+        "currencies": ["MAD"],
+        "continent": "AF",
     },
     "ER": {
         "code": "ER",
@@ -2225,6 +2177,7 @@ CC_DICT = {
         "alias": [""],
         "languages": ["ti", "ar", "en"],
         "currencies": ["ETB", "ERN"],
+        "continent": "AF",
     },
     "ES": {
         "code": "ES",
@@ -2235,9 +2188,8 @@ CC_DICT = {
         "tld": [".es"],
         "alias": [""],
         "languages": ["es", "eu", "ca", "gl", "oc"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "ET": {
         "code": "ET",
@@ -2248,9 +2200,8 @@ CC_DICT = {
         "tld": [".et"],
         "alias": [""],
         "languages": ["am"],
-        "currencies": [
-            "ETB",
-        ],
+        "currencies": ["ETB"],
+        "continent": "AF",
     },
     "FI": {
         "code": "FI",
@@ -2261,9 +2212,8 @@ CC_DICT = {
         "tld": [".fi"],
         "alias": [""],
         "languages": ["fi", "sv"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "FJ": {
         "code": "FJ",
@@ -2274,9 +2224,8 @@ CC_DICT = {
         "tld": [".fj"],
         "alias": [""],
         "languages": ["en", "fj", "hi", "ur"],
-        "currencies": [
-            "FJD",
-        ],
+        "currencies": ["FJD"],
+        "continent": "OC",
     },
     "FK": {
         "code": "FK",
@@ -2287,9 +2236,8 @@ CC_DICT = {
         "tld": [".fk"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "FKP",
-        ],
+        "currencies": ["FKP"],
+        "continent": "SA",
     },
     "FM": {
         "code": "FM",
@@ -2300,9 +2248,8 @@ CC_DICT = {
         "tld": [".fm"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "OC",
     },
     "FO": {
         "code": "FO",
@@ -2313,9 +2260,8 @@ CC_DICT = {
         "tld": [".fo"],
         "alias": [""],
         "languages": ["fo"],
-        "currencies": [
-            "DKK",
-        ],
+        "currencies": ["DKK"],
+        "continent": "EU",
     },
     "FR": {
         "code": "FR",
@@ -2326,9 +2272,8 @@ CC_DICT = {
         "tld": [".fr"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "GA": {
         "code": "GA",
@@ -2339,9 +2284,8 @@ CC_DICT = {
         "tld": [".ga"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "XAF",
-        ],
+        "currencies": ["XAF"],
+        "continent": "AF",
     },
     "GB": {
         "code": "GB",
@@ -2352,9 +2296,8 @@ CC_DICT = {
         "tld": [".gb", ".uk"],
         "alias": ["UK"],
         "languages": ["en"],
-        "currencies": [
-            "GBP",
-        ],
+        "currencies": ["GBP"],
+        "continent": "EU",
     },
     "GD": {
         "code": "GD",
@@ -2365,9 +2308,8 @@ CC_DICT = {
         "tld": [".gd"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "XCD",
-        ],
+        "currencies": ["XCD"],
+        "continent": "NA",
     },
     "GE": {
         "code": "GE",
@@ -2378,9 +2320,8 @@ CC_DICT = {
         "tld": [".ge"],
         "alias": [""],
         "languages": ["ka"],
-        "currencies": [
-            "GEL",
-        ],
+        "currencies": ["GEL"],
+        "continent": "AS",
     },
     "GF": {
         "code": "GF",
@@ -2391,9 +2332,8 @@ CC_DICT = {
         "tld": [".gf"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "SA",
     },
     "GG": {
         "code": "GG",
@@ -2404,9 +2344,8 @@ CC_DICT = {
         "tld": [".gg"],
         "alias": [""],
         "languages": ["en", "fr"],
-        "currencies": [
-            "GBP",
-        ],
+        "currencies": ["GBP"],
+        "continent": "EU",
     },
     "GH": {
         "code": "GH",
@@ -2417,9 +2356,8 @@ CC_DICT = {
         "tld": [".gh"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "GHS",
-        ],
+        "currencies": ["GHS"],
+        "continent": "AF",
     },
     "GI": {
         "code": "GI",
@@ -2430,9 +2368,8 @@ CC_DICT = {
         "tld": [".gi"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "GIP",
-        ],
+        "currencies": ["GIP"],
+        "continent": "EU",
     },
     "GL": {
         "code": "GL",
@@ -2443,9 +2380,8 @@ CC_DICT = {
         "tld": [".gl"],
         "alias": [""],
         "languages": ["kl"],
-        "currencies": [
-            "DKK",
-        ],
+        "currencies": ["DKK"],
+        "continent": "NA",
     },
     "GM": {
         "code": "GM",
@@ -2456,9 +2392,8 @@ CC_DICT = {
         "tld": [".gm"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "GMD",
-        ],
+        "currencies": ["GMD"],
+        "continent": "AF",
     },
     "GN": {
         "code": "GN",
@@ -2469,9 +2404,8 @@ CC_DICT = {
         "tld": [".gn"],
         "alias": [""],
         "languages": ["fr", "ff"],
-        "currencies": [
-            "GNF",
-        ],
+        "currencies": ["GNF"],
+        "continent": "AF",
     },
     "GP": {
         "code": "GP",
@@ -2482,9 +2416,8 @@ CC_DICT = {
         "tld": [".gp"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "NA",
     },
     "GQ": {
         "code": "GQ",
@@ -2495,9 +2428,8 @@ CC_DICT = {
         "tld": [".gq"],
         "alias": [""],
         "languages": ["es", "fr"],
-        "currencies": [
-            "XAF",
-        ],
+        "currencies": ["XAF"],
+        "continent": "AF",
     },
     "GR": {
         "code": "GR",
@@ -2508,9 +2440,8 @@ CC_DICT = {
         "tld": [".gr"],
         "alias": ["EL"],
         "languages": ["el"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "GS": {
         "code": "GS",
@@ -2521,9 +2452,8 @@ CC_DICT = {
         "tld": [".gs"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "GBP",
-        ],
+        "currencies": ["GBP"],
+        "continent": "AN",
     },
     "GT": {
         "code": "GT",
@@ -2534,9 +2464,8 @@ CC_DICT = {
         "tld": [".gt"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "GTQ",
-        ],
+        "currencies": ["GTQ"],
+        "continent": "NA",
     },
     "GU": {
         "code": "GU",
@@ -2547,9 +2476,8 @@ CC_DICT = {
         "tld": [".gu"],
         "alias": [""],
         "languages": ["en", "ch", "es"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "OC",
     },
     "GW": {
         "code": "GW",
@@ -2560,9 +2488,8 @@ CC_DICT = {
         "tld": [".gw"],
         "alias": [""],
         "languages": ["pt"],
-        "currencies": [
-            "XOF",
-        ],
+        "currencies": ["XOF"],
+        "continent": "AF",
     },
     "GY": {
         "code": "GY",
@@ -2573,9 +2500,8 @@ CC_DICT = {
         "tld": [".gy"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "GYD",
-        ],
+        "currencies": ["GYD"],
+        "continent": "SA",
     },
     "HK": {
         "code": "HK",
@@ -2586,9 +2512,8 @@ CC_DICT = {
         "tld": [".hk"],
         "alias": [""],
         "languages": ["zh", "en"],
-        "currencies": [
-            "HKD",
-        ],
+        "currencies": ["HKD"],
+        "continent": "AS",
     },
     "HM": {
         "code": "HM",
@@ -2599,9 +2524,8 @@ CC_DICT = {
         "tld": [".hm"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "AUD",
-        ],
+        "currencies": ["AUD"],
+        "continent": "AN",
     },
     "HN": {
         "code": "HN",
@@ -2612,9 +2536,8 @@ CC_DICT = {
         "tld": [".hn"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "HNL",
-        ],
+        "currencies": ["HNL"],
+        "continent": "NA",
     },
     "HR": {
         "code": "HR",
@@ -2625,9 +2548,8 @@ CC_DICT = {
         "tld": [".hr"],
         "alias": [""],
         "languages": ["hr"],
-        "currencies": [
-            "HRK",
-        ],
+        "currencies": ["HRK"],
+        "continent": "EU",
     },
     "HT": {
         "code": "HT",
@@ -2639,6 +2561,7 @@ CC_DICT = {
         "alias": [""],
         "languages": ["fr", "ht"],
         "currencies": ["HTG", "USD"],
+        "continent": "NA",
     },
     "HU": {
         "code": "HU",
@@ -2649,9 +2572,8 @@ CC_DICT = {
         "tld": [".hu"],
         "alias": [""],
         "languages": ["hu"],
-        "currencies": [
-            "HUF",
-        ],
+        "currencies": ["HUF"],
+        "continent": "EU",
     },
     "ID": {
         "code": "CODE",
@@ -2662,9 +2584,8 @@ CC_DICT = {
         "tld": [".id"],
         "alias": [""],
         "languages": ["id"],
-        "currencies": [
-            "IDR",
-        ],
+        "currencies": ["IDR"],
+        "continent": "AS",
     },
     "IE": {
         "code": "IE",
@@ -2675,9 +2596,8 @@ CC_DICT = {
         "tld": [".ie"],
         "alias": [""],
         "languages": ["ga", "en"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "IL": {
         "code": "IL",
@@ -2688,9 +2608,8 @@ CC_DICT = {
         "tld": [".il"],
         "alias": [""],
         "languages": ["he", "ar"],
-        "currencies": [
-            "ILS",
-        ],
+        "currencies": ["ILS"],
+        "continent": "AS",
     },
     "IM": {
         "code": "IM",
@@ -2701,9 +2620,8 @@ CC_DICT = {
         "tld": [".im"],
         "alias": [""],
         "languages": ["en", "gv"],
-        "currencies": [
-            "GBP",
-        ],
+        "currencies": ["GBP"],
+        "continent": "EU",
     },
     "IN": {
         "code": "IN",
@@ -2714,9 +2632,8 @@ CC_DICT = {
         "tld": [".in"],
         "alias": [""],
         "languages": ["hi", "en"],
-        "currencies": [
-            "INR",
-        ],
+        "currencies": ["INR"],
+        "continent": "AS",
     },
     "IO": {
         "code": "IO",
@@ -2727,9 +2644,8 @@ CC_DICT = {
         "tld": [".io"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "AS",
     },
     "IQ": {
         "code": "IQ",
@@ -2740,9 +2656,8 @@ CC_DICT = {
         "tld": [".iq"],
         "alias": [""],
         "languages": ["ar", "ku"],
-        "currencies": [
-            "IQD",
-        ],
+        "currencies": ["IQD"],
+        "continent": "AS",
     },
     "IR": {
         "code": "IR",
@@ -2753,9 +2668,8 @@ CC_DICT = {
         "tld": [".ir"],
         "alias": [""],
         "languages": ["fa"],
-        "currencies": [
-            "IRR",
-        ],
+        "currencies": ["IRR"],
+        "continent": "AS",
     },
     "IS": {
         "code": "IS",
@@ -2766,9 +2680,8 @@ CC_DICT = {
         "tld": [".is"],
         "alias": [""],
         "languages": ["is"],
-        "currencies": [
-            "ISK",
-        ],
+        "currencies": ["ISK"],
+        "continent": "EU",
     },
     "IT": {
         "code": "IT",
@@ -2779,9 +2692,8 @@ CC_DICT = {
         "tld": [".it"],
         "alias": [""],
         "languages": ["it"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "JE": {
         "code": "JE",
@@ -2792,9 +2704,8 @@ CC_DICT = {
         "tld": [".je"],
         "alias": [""],
         "languages": ["en", "fr"],
-        "currencies": [
-            "GBP",
-        ],
+        "currencies": ["GBP"],
+        "continent": "EU",
     },
     "JM": {
         "code": "JM",
@@ -2805,9 +2716,8 @@ CC_DICT = {
         "tld": [".jm"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "JMD",
-        ],
+        "currencies": ["JMD"],
+        "continent": "NA",
     },
     "JO": {
         "code": "JO",
@@ -2818,9 +2728,8 @@ CC_DICT = {
         "tld": [".jo"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "JOD",
-        ],
+        "currencies": ["JOD"],
+        "continent": "AS",
     },
     "JP": {
         "code": "JP",
@@ -2831,9 +2740,8 @@ CC_DICT = {
         "tld": [".jp"],
         "alias": [""],
         "languages": ["ja"],
-        "currencies": [
-            "JPY",
-        ],
+        "currencies": ["JPY"],
+        "continent": "AS",
     },
     "KE": {
         "code": "KE",
@@ -2844,9 +2752,8 @@ CC_DICT = {
         "tld": [".ke"],
         "alias": [""],
         "languages": ["en", "sw"],
-        "currencies": [
-            "KES",
-        ],
+        "currencies": ["KES"],
+        "continent": "AF",
     },
     "KG": {
         "code": "KG",
@@ -2857,9 +2764,8 @@ CC_DICT = {
         "tld": [".kg"],
         "alias": [""],
         "languages": ["ky", "ru"],
-        "currencies": [
-            "KGS",
-        ],
+        "currencies": ["KGS"],
+        "continent": "AS",
     },
     "KH": {
         "code": "KH",
@@ -2870,9 +2776,8 @@ CC_DICT = {
         "tld": [".kh"],
         "alias": [""],
         "languages": ["km"],
-        "currencies": [
-            "KHR",
-        ],
+        "currencies": ["KHR"],
+        "continent": "AS",
     },
     "KI": {
         "code": "KI",
@@ -2883,9 +2788,8 @@ CC_DICT = {
         "tld": [".ki"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "AUD",
-        ],
+        "currencies": ["AUD"],
+        "continent": "OC",
     },
     "KM": {
         "code": "KM",
@@ -2896,9 +2800,8 @@ CC_DICT = {
         "tld": [".km"],
         "alias": [""],
         "languages": ["ar", "fr"],
-        "currencies": [
-            "KMF",
-        ],
+        "currencies": ["KMF"],
+        "continent": "AF",
     },
     "KN": {
         "code": "KN",
@@ -2909,9 +2812,8 @@ CC_DICT = {
         "tld": [".kn"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "XCD",
-        ],
+        "currencies": ["XCD"],
+        "continent": "NA",
     },
     "KP": {
         "code": "KP",
@@ -2922,9 +2824,8 @@ CC_DICT = {
         "tld": [".kp"],
         "alias": [""],
         "languages": ["ko"],
-        "currencies": [
-            "KPW",
-        ],
+        "currencies": ["KPW"],
+        "continent": "AS",
     },
     "KR": {
         "code": "KR",
@@ -2935,9 +2836,8 @@ CC_DICT = {
         "tld": [".kr"],
         "alias": [""],
         "languages": ["ko"],
-        "currencies": [
-            "KRW",
-        ],
+        "currencies": ["KRW"],
+        "continent": "AS",
     },
     "KW": {
         "code": "KW",
@@ -2948,9 +2848,8 @@ CC_DICT = {
         "tld": [".kw"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "KWD",
-        ],
+        "currencies": ["KWD"],
+        "continent": "AS",
     },
     "KY": {
         "code": "KY",
@@ -2961,9 +2860,8 @@ CC_DICT = {
         "tld": [".ky"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "KYD",
-        ],
+        "currencies": ["KYD"],
+        "continent": "NA",
     },
     "KZ": {
         "code": "KZ",
@@ -2974,9 +2872,8 @@ CC_DICT = {
         "tld": [".kz"],
         "alias": [""],
         "languages": ["kk", "ru"],
-        "currencies": [
-            "KZT",
-        ],
+        "currencies": ["KZT"],
+        "continent": "AS",
     },
     "LA": {
         "code": "LA",
@@ -2987,9 +2884,8 @@ CC_DICT = {
         "tld": [".la"],
         "alias": [""],
         "languages": ["lo"],
-        "currencies": [
-            "LAK",
-        ],
+        "currencies": ["LAK"],
+        "continent": "AS",
     },
     "LB": {
         "code": "LB",
@@ -3000,9 +2896,8 @@ CC_DICT = {
         "tld": [".lb"],
         "alias": [""],
         "languages": ["ar", "fr"],
-        "currencies": [
-            "LBP",
-        ],
+        "currencies": ["LBP"],
+        "continent": "AS",
     },
     "LC": {
         "code": "LC",
@@ -3013,9 +2908,8 @@ CC_DICT = {
         "tld": [".lc"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "XCD",
-        ],
+        "currencies": ["XCD"],
+        "continent": "NA",
     },
     "LI": {
         "code": "LI",
@@ -3026,9 +2920,8 @@ CC_DICT = {
         "tld": [".li"],
         "alias": [""],
         "languages": ["de"],
-        "currencies": [
-            "CHF",
-        ],
+        "currencies": ["CHF"],
+        "continent": "EU",
     },
     "LK": {
         "code": "LK",
@@ -3039,9 +2932,8 @@ CC_DICT = {
         "tld": [".lk"],
         "alias": [""],
         "languages": ["si", "ta"],
-        "currencies": [
-            "LKR",
-        ],
+        "currencies": ["LKR"],
+        "continent": "AS",
     },
     "LR": {
         "code": "LR",
@@ -3052,9 +2944,8 @@ CC_DICT = {
         "tld": [".lr"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "LRD",
-        ],
+        "currencies": ["LRD"],
+        "continent": "AF",
     },
     "LS": {
         "code": "LS",
@@ -3066,6 +2957,7 @@ CC_DICT = {
         "alias": [""],
         "languages": ["en", "st"],
         "currencies": ["LSL", "ZAR"],
+        "continent": "AF",
     },
     "LT": {
         "code": "LT",
@@ -3076,9 +2968,8 @@ CC_DICT = {
         "tld": [".lt"],
         "alias": [""],
         "languages": ["lt"],
-        "currencies": [
-            "LTL",
-        ],
+        "currencies": ["LTL"],
+        "continent": "EU",
     },
     "LU": {
         "code": "LU",
@@ -3089,9 +2980,8 @@ CC_DICT = {
         "tld": [".lu"],
         "alias": [""],
         "languages": ["fr", "de", "lb"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "LV": {
         "code": "LV",
@@ -3102,9 +2992,8 @@ CC_DICT = {
         "tld": [".lv"],
         "alias": [""],
         "languages": ["lv"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "LY": {
         "code": "LY",
@@ -3115,9 +3004,8 @@ CC_DICT = {
         "tld": [".ly"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "LYD",
-        ],
+        "currencies": ["LYD"],
+        "continent": "AF",
     },
     "MA": {
         "code": "MA",
@@ -3128,9 +3016,8 @@ CC_DICT = {
         "tld": [".ma"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "MAD",
-        ],
+        "currencies": ["MAD"],
+        "continent": "AF",
     },
     "MC": {
         "code": "MC",
@@ -3141,9 +3028,8 @@ CC_DICT = {
         "tld": [".mc"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "MD": {
         "code": "MD",
@@ -3154,9 +3040,8 @@ CC_DICT = {
         "tld": [".md"],
         "alias": [""],
         "languages": ["ro"],
-        "currencies": [
-            "MDL",
-        ],
+        "currencies": ["MDL"],
+        "continent": "EU",
     },
     "ME": {
         "code": "ME",
@@ -3167,9 +3052,8 @@ CC_DICT = {
         "tld": [".me"],
         "alias": [""],
         "languages": ["sr", "bs", "sq", "hr"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "MF": {
         "code": "MF",
@@ -3180,9 +3064,8 @@ CC_DICT = {
         "tld": [".mf"],
         "alias": [""],
         "languages": ["en", "fr", "nl"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "NA",
     },
     "MG": {
         "code": "MG",
@@ -3193,9 +3076,8 @@ CC_DICT = {
         "tld": [".mg"],
         "alias": [""],
         "languages": ["fr", "mg"],
-        "currencies": [
-            "MGA",
-        ],
+        "currencies": ["MGA"],
+        "continent": "AF",
     },
     "MH": {
         "code": "MH",
@@ -3206,9 +3088,8 @@ CC_DICT = {
         "tld": [".mh"],
         "alias": [""],
         "languages": ["en", "mh"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "OC",
     },
     "MK": {
         "code": "MK",
@@ -3219,9 +3100,8 @@ CC_DICT = {
         "tld": [".mk"],
         "alias": [""],
         "languages": ["mk"],
-        "currencies": [
-            "MKD",
-        ],
+        "currencies": ["MKD"],
+        "continent": "EU",
     },
     "ML": {
         "code": "ML",
@@ -3232,9 +3112,8 @@ CC_DICT = {
         "tld": [".ml"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "XOF",
-        ],
+        "currencies": ["XOF"],
+        "continent": "AF",
     },
     "MM": {
         "code": "MM",
@@ -3245,9 +3124,8 @@ CC_DICT = {
         "tld": [".mm"],
         "alias": [""],
         "languages": ["my"],
-        "currencies": [
-            "MMK",
-        ],
+        "currencies": ["MMK"],
+        "continent": "AS",
     },
     "MN": {
         "code": "MN",
@@ -3258,9 +3136,8 @@ CC_DICT = {
         "tld": [".mn"],
         "alias": [""],
         "languages": ["mn"],
-        "currencies": [
-            "MNT",
-        ],
+        "currencies": ["MNT"],
+        "continent": "AS",
     },
     "MO": {
         "code": "MO",
@@ -3271,9 +3148,8 @@ CC_DICT = {
         "tld": [".mo"],
         "alias": [""],
         "languages": ["zh", "pt"],
-        "currencies": [
-            "MOP",
-        ],
+        "currencies": ["MOP"],
+        "continent": "AS",
     },
     "MP": {
         "code": "MP",
@@ -3284,9 +3160,8 @@ CC_DICT = {
         "tld": [".mp"],
         "alias": [""],
         "languages": ["en", "ch"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "OC",
     },
     "MQ": {
         "code": "MQ",
@@ -3297,9 +3172,8 @@ CC_DICT = {
         "tld": [".mq"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "NA",
     },
     "MR": {
         "code": "MR",
@@ -3310,9 +3184,8 @@ CC_DICT = {
         "tld": [".mr"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "MRO",
-        ],
+        "currencies": ["MRO"],
+        "continent": "AF",
     },
     "MS": {
         "code": "MS",
@@ -3323,9 +3196,8 @@ CC_DICT = {
         "tld": [".ms"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "XCD",
-        ],
+        "currencies": ["XCD"],
+        "continent": "NA",
     },
     "MT": {
         "code": "MT",
@@ -3336,9 +3208,8 @@ CC_DICT = {
         "tld": [".mt"],
         "alias": [""],
         "languages": ["mt", "en"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "MU": {
         "code": "MU",
@@ -3349,9 +3220,8 @@ CC_DICT = {
         "tld": [".mu"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "MUR",
-        ],
+        "currencies": ["MUR"],
+        "continent": "AF",
     },
     "MV": {
         "code": "MV",
@@ -3362,9 +3232,8 @@ CC_DICT = {
         "tld": [".mv"],
         "alias": [""],
         "languages": ["dv"],
-        "currencies": [
-            "MVR",
-        ],
+        "currencies": ["MVR"],
+        "continent": "AS",
     },
     "MW": {
         "code": "MW",
@@ -3375,9 +3244,8 @@ CC_DICT = {
         "tld": [".mw"],
         "alias": [""],
         "languages": ["en", "ny"],
-        "currencies": [
-            "MWK",
-        ],
+        "currencies": ["MWK"],
+        "continent": "AF",
     },
     "MX": {
         "code": "MX",
@@ -3388,9 +3256,8 @@ CC_DICT = {
         "tld": [".mx"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "MXN",
-        ],
+        "currencies": ["MXN"],
+        "continent": "NA",
     },
     "MY": {
         "code": "MY",
@@ -3401,9 +3268,8 @@ CC_DICT = {
         "tld": [".my"],
         "alias": [""],
         "languages": ["ms"],
-        "currencies": [
-            "MYR",
-        ],
+        "currencies": ["MYR"],
+        "continent": "AS",
     },
     "MZ": {
         "code": "MZ",
@@ -3414,9 +3280,8 @@ CC_DICT = {
         "tld": [".mz"],
         "alias": [""],
         "languages": ["pt"],
-        "currencies": [
-            "MZM",
-        ],
+        "currencies": ["MZM"],
+        "continent": "AF",
     },
     "NA": {
         "code": "NA",
@@ -3428,6 +3293,7 @@ CC_DICT = {
         "alias": [""],
         "languages": ["en", "af"],
         "currencies": ["NAD", "ZAR"],
+        "continent": "AF",
     },
     "NC": {
         "code": "NC",
@@ -3438,9 +3304,8 @@ CC_DICT = {
         "tld": [".nc"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "XPF",
-        ],
+        "currencies": ["XPF"],
+        "continent": "OC",
     },
     "NE": {
         "code": "NE",
@@ -3451,9 +3316,8 @@ CC_DICT = {
         "tld": [".ne"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "XOF",
-        ],
+        "currencies": ["XOF"],
+        "continent": "AF",
     },
     "NF": {
         "code": "NF",
@@ -3464,9 +3328,8 @@ CC_DICT = {
         "tld": [".nf"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "AUD",
-        ],
+        "currencies": ["AUD"],
+        "continent": "OC",
     },
     "NG": {
         "code": "NG",
@@ -3477,9 +3340,8 @@ CC_DICT = {
         "tld": [".ng"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "NGN",
-        ],
+        "currencies": ["NGN"],
+        "continent": "AF",
     },
     "NI": {
         "code": "NI",
@@ -3490,9 +3352,8 @@ CC_DICT = {
         "tld": [".ni"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "NIO",
-        ],
+        "currencies": ["NIO"],
+        "continent": "NA",
     },
     "NL": {
         "code": "NL",
@@ -3503,9 +3364,8 @@ CC_DICT = {
         "tld": [".nl"],
         "alias": [""],
         "languages": ["nl"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "NO": {
         "code": "NO",
@@ -3516,9 +3376,8 @@ CC_DICT = {
         "tld": [".no"],
         "alias": [""],
         "languages": ["no", "nb", "nn"],
-        "currencies": [
-            "NOK",
-        ],
+        "currencies": ["NOK"],
+        "continent": "EU",
     },
     "NP": {
         "code": "NP",
@@ -3529,9 +3388,8 @@ CC_DICT = {
         "tld": [".np"],
         "alias": [""],
         "languages": ["ne"],
-        "currencies": [
-            "NPR",
-        ],
+        "currencies": ["NPR"],
+        "continent": "AS",
     },
     "NR": {
         "code": "NR",
@@ -3542,9 +3400,8 @@ CC_DICT = {
         "tld": [".nr"],
         "alias": [""],
         "languages": ["en", "na"],
-        "currencies": [
-            "AUD",
-        ],
+        "currencies": ["AUD"],
+        "continent": "OC",
     },
     "NU": {
         "code": "NU",
@@ -3555,9 +3412,8 @@ CC_DICT = {
         "tld": [".nu"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "NZD",
-        ],
+        "currencies": ["NZD"],
+        "continent": "OC",
     },
     "NZ": {
         "code": "NZ",
@@ -3568,9 +3424,8 @@ CC_DICT = {
         "tld": [".nz"],
         "alias": [""],
         "languages": ["en", "mi"],
-        "currencies": [
-            "NZD",
-        ],
+        "currencies": ["NZD"],
+        "continent": "OC",
     },
     "OM": {
         "code": "OM",
@@ -3581,9 +3436,8 @@ CC_DICT = {
         "tld": [".om"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "OMR",
-        ],
+        "currencies": ["OMR"],
+        "continent": "AS",
     },
     "PA": {
         "code": "PA",
@@ -3595,6 +3449,7 @@ CC_DICT = {
         "alias": [""],
         "languages": ["es"],
         "currencies": ["PAB", "USD"],
+        "continent": "NA",
     },
     "PE": {
         "code": "PE",
@@ -3605,9 +3460,8 @@ CC_DICT = {
         "tld": [".pe"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "PEN",
-        ],
+        "currencies": ["PEN"],
+        "continent": "SA",
     },
     "PF": {
         "code": "PF",
@@ -3618,9 +3472,8 @@ CC_DICT = {
         "tld": [".pf"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "XPF",
-        ],
+        "currencies": ["XPF"],
+        "continent": "OC",
     },
     "PG": {
         "code": "PG",
@@ -3631,9 +3484,8 @@ CC_DICT = {
         "tld": [".pg"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "PGK",
-        ],
+        "currencies": ["PGK"],
+        "continent": "OC",
     },
     "PH": {
         "code": "PH",
@@ -3644,9 +3496,8 @@ CC_DICT = {
         "tld": [".ph"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "PHP",
-        ],
+        "currencies": ["PHP"],
+        "continent": "AS",
     },
     "PK": {
         "code": "PK",
@@ -3657,9 +3508,8 @@ CC_DICT = {
         "tld": [".pk"],
         "alias": [""],
         "languages": ["en", "ur"],
-        "currencies": [
-            "PKR",
-        ],
+        "currencies": ["PKR"],
+        "continent": "AS",
     },
     "PL": {
         "code": "PL",
@@ -3670,9 +3520,8 @@ CC_DICT = {
         "tld": [".pl"],
         "alias": [""],
         "languages": ["pl"],
-        "currencies": [
-            "PLN",
-        ],
+        "currencies": ["PLN"],
+        "continent": "EU",
     },
     "PM": {
         "code": "PM",
@@ -3683,9 +3532,8 @@ CC_DICT = {
         "tld": [".pm"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "NA",
     },
     "PN": {
         "code": "PN",
@@ -3696,9 +3544,8 @@ CC_DICT = {
         "tld": [".pn"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "NZD",
-        ],
+        "currencies": ["NZD"],
+        "continent": "OC",
     },
     "PR": {
         "code": "PR",
@@ -3709,9 +3556,8 @@ CC_DICT = {
         "tld": [".pr"],
         "alias": [""],
         "languages": ["es", "en"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "NA",
     },
     "PS": {
         "code": "PS",
@@ -3723,6 +3569,7 @@ CC_DICT = {
         "alias": [""],
         "languages": ["ar"],
         "currencies": [],
+        "continent": "AS",
     },
     "PT": {
         "code": "PT",
@@ -3733,9 +3580,8 @@ CC_DICT = {
         "tld": [".pt"],
         "alias": [""],
         "languages": ["pt"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "PW": {
         "code": "PW",
@@ -3746,9 +3592,8 @@ CC_DICT = {
         "tld": [".pw"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "OC",
     },
     "PY": {
         "code": "PY",
@@ -3759,9 +3604,8 @@ CC_DICT = {
         "tld": [".py"],
         "alias": [""],
         "languages": ["es", "gn"],
-        "currencies": [
-            "PYG",
-        ],
+        "currencies": ["PYG"],
+        "continent": "SA",
     },
     "QA": {
         "code": "QA",
@@ -3772,9 +3616,8 @@ CC_DICT = {
         "tld": [".qa"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "QAR",
-        ],
+        "currencies": ["QAR"],
+        "continent": "AS",
     },
     "RE": {
         "code": "RE",
@@ -3785,9 +3628,8 @@ CC_DICT = {
         "tld": [".re"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "AF",
     },
     "RO": {
         "code": "RO",
@@ -3798,9 +3640,8 @@ CC_DICT = {
         "tld": [".ro"],
         "alias": [""],
         "languages": ["ro"],
-        "currencies": [
-            "RON",
-        ],
+        "currencies": ["RON"],
+        "continent": "EU",
     },
     "RS": {
         "code": "RS",
@@ -3811,9 +3652,8 @@ CC_DICT = {
         "tld": [".rs"],
         "alias": [""],
         "languages": ["sr"],
-        "currencies": [
-            "RSD",
-        ],
+        "currencies": ["RSD"],
+        "continent": "EU",
     },
     "RU": {
         "code": "RU",
@@ -3824,9 +3664,8 @@ CC_DICT = {
         "tld": [".ru"],
         "alias": [""],
         "languages": ["ru"],
-        "currencies": [
-            "RUB",
-        ],
+        "currencies": ["RUB"],
+        "continent": "AS",
     },
     "RW": {
         "code": "RW",
@@ -3837,9 +3676,8 @@ CC_DICT = {
         "tld": [".rw"],
         "alias": [""],
         "languages": ["rw", "en", "fr"],
-        "currencies": [
-            "RWF",
-        ],
+        "currencies": ["RWF"],
+        "continent": "AF",
     },
     "SA": {
         "code": "SA",
@@ -3850,9 +3688,8 @@ CC_DICT = {
         "tld": [".sa"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "SAR",
-        ],
+        "currencies": ["SAR"],
+        "continent": "AS",
     },
     "SB": {
         "code": "SB",
@@ -3863,9 +3700,8 @@ CC_DICT = {
         "tld": [".sb"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "SBD",
-        ],
+        "currencies": ["SBD"],
+        "continent": "OC",
     },
     "SC": {
         "code": "SC",
@@ -3876,9 +3712,8 @@ CC_DICT = {
         "tld": [".sc"],
         "alias": [""],
         "languages": ["fr", "en"],
-        "currencies": [
-            "SCR",
-        ],
+        "currencies": ["SCR"],
+        "continent": "AF",
     },
     "SD": {
         "code": "SD",
@@ -3889,9 +3724,8 @@ CC_DICT = {
         "tld": [".sd"],
         "alias": [""],
         "languages": ["ar", "en"],
-        "currencies": [
-            "SDG",
-        ],
+        "currencies": ["SDG"],
+        "continent": "AF",
     },
     "SE": {
         "code": "SE",
@@ -3902,9 +3736,8 @@ CC_DICT = {
         "tld": [".se"],
         "alias": [""],
         "languages": ["sv"],
-        "currencies": [
-            "SEK",
-        ],
+        "currencies": ["SEK"],
+        "continent": "EU",
     },
     "SG": {
         "code": "SG",
@@ -3915,9 +3748,8 @@ CC_DICT = {
         "tld": [".sg"],
         "alias": [""],
         "languages": ["en", "ms", "ta", "zh"],
-        "currencies": [
-            "SGD",
-        ],
+        "currencies": ["SGD"],
+        "continent": "AS",
     },
     "SH": {
         "code": "SH",
@@ -3928,9 +3760,8 @@ CC_DICT = {
         "tld": [".sh"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "SHP",
-        ],
+        "currencies": ["SHP"],
+        "continent": "AF",
     },
     "SI": {
         "code": "SI",
@@ -3941,9 +3772,8 @@ CC_DICT = {
         "tld": [".si"],
         "alias": [""],
         "languages": ["sl"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "SJ": {
         "code": "SJ",
@@ -3954,9 +3784,8 @@ CC_DICT = {
         "tld": [".sj"],
         "alias": [""],
         "languages": ["no"],
-        "currencies": [
-            "NOK",
-        ],
+        "currencies": ["NOK"],
+        "continent": "EU",
     },
     "SK": {
         "code": "SK",
@@ -3967,9 +3796,8 @@ CC_DICT = {
         "tld": [".sk"],
         "alias": [""],
         "languages": ["sk"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "SL": {
         "code": "SL",
@@ -3980,9 +3808,8 @@ CC_DICT = {
         "tld": [".sl"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "SLL",
-        ],
+        "currencies": ["SLL"],
+        "continent": "AF",
     },
     "SM": {
         "code": "SM",
@@ -3993,9 +3820,8 @@ CC_DICT = {
         "tld": [".sm"],
         "alias": [""],
         "languages": ["it"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "SN": {
         "code": "SN",
@@ -4006,9 +3832,8 @@ CC_DICT = {
         "tld": [".sn"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "XOF",
-        ],
+        "currencies": ["XOF"],
+        "continent": "AF",
     },
     "SO": {
         "code": "SO",
@@ -4019,9 +3844,8 @@ CC_DICT = {
         "tld": [".so"],
         "alias": [""],
         "languages": ["so", "ar"],
-        "currencies": [
-            "SOS",
-        ],
+        "currencies": ["SOS"],
+        "continent": "AF",
     },
     "SR": {
         "code": "SR",
@@ -4032,9 +3856,8 @@ CC_DICT = {
         "tld": [".sr"],
         "alias": [""],
         "languages": ["nl"],
-        "currencies": [
-            "SRD",
-        ],
+        "currencies": ["SRD"],
+        "continent": "SA",
     },
     "SS": {
         "code": "SS",
@@ -4045,9 +3868,8 @@ CC_DICT = {
         "tld": [".ss"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "SSP",
-        ],
+        "currencies": ["SSP"],
+        "continent": "AF",
     },
     "ST": {
         "code": "ST",
@@ -4058,9 +3880,8 @@ CC_DICT = {
         "tld": [".st"],
         "alias": [""],
         "languages": ["pt"],
-        "currencies": [
-            "STD",
-        ],
+        "currencies": ["STD"],
+        "continent": "AF",
     },
     "SV": {
         "code": "SV",
@@ -4071,9 +3892,8 @@ CC_DICT = {
         "tld": [".sv"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "NA",
     },
     "SX": {
         "code": "SX",
@@ -4084,9 +3904,8 @@ CC_DICT = {
         "tld": [".sx"],
         "alias": [""],
         "languages": ["nl", "en"],
-        "currencies": [
-            "ANG",
-        ],
+        "currencies": ["ANG"],
+        "continent": "NA",
     },
     "SY": {
         "code": "SY",
@@ -4097,9 +3916,8 @@ CC_DICT = {
         "tld": [".sy"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "SYP",
-        ],
+        "currencies": ["SYP"],
+        "continent": "AS",
     },
     "SZ": {
         "code": "SZ",
@@ -4110,9 +3928,8 @@ CC_DICT = {
         "tld": [".sz"],
         "alias": [""],
         "languages": ["en", "ss"],
-        "currencies": [
-            "SZL",
-        ],
+        "currencies": ["SZL"],
+        "continent": "AF",
     },
     "TC": {
         "code": "TC",
@@ -4123,9 +3940,8 @@ CC_DICT = {
         "tld": [".tc"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "NA",
     },
     "TD": {
         "code": "TD",
@@ -4136,9 +3952,8 @@ CC_DICT = {
         "tld": [".td"],
         "alias": [""],
         "languages": ["fr", "ar"],
-        "currencies": [
-            "XAF",
-        ],
+        "currencies": ["XAF"],
+        "continent": "AF",
     },
     "TF": {
         "code": "TF",
@@ -4149,9 +3964,8 @@ CC_DICT = {
         "tld": [".tf"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "AN",
     },
     "TG": {
         "code": "TG",
@@ -4162,9 +3976,8 @@ CC_DICT = {
         "tld": [".tg"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "XOF",
-        ],
+        "currencies": ["XOF"],
+        "continent": "AF",
     },
     "TH": {
         "code": "TH",
@@ -4175,9 +3988,8 @@ CC_DICT = {
         "tld": [".th"],
         "alias": [""],
         "languages": ["th"],
-        "currencies": [
-            "THB",
-        ],
+        "currencies": ["THB"],
+        "continent": "AS",
     },
     "TJ": {
         "code": "TJ",
@@ -4188,9 +4000,8 @@ CC_DICT = {
         "tld": [".tj"],
         "alias": [""],
         "languages": ["tg", "ru"],
-        "currencies": [
-            "TJS",
-        ],
+        "currencies": ["TJS"],
+        "continent": "AS",
     },
     "TK": {
         "code": "TK",
@@ -4201,9 +4012,8 @@ CC_DICT = {
         "tld": [".tk"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "NZD",
-        ],
+        "currencies": ["NZD"],
+        "continent": "OC",
     },
     "TL": {
         "code": "TL",
@@ -4214,9 +4024,8 @@ CC_DICT = {
         "tld": [".tl"],
         "alias": [""],
         "languages": ["pt"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "AS",
     },
     "TM": {
         "code": "TM",
@@ -4227,9 +4036,8 @@ CC_DICT = {
         "tld": [".tm"],
         "alias": [""],
         "languages": ["tk", "ru"],
-        "currencies": [
-            "TMT",
-        ],
+        "currencies": ["TMT"],
+        "continent": "AS",
     },
     "TN": {
         "code": "TN",
@@ -4240,9 +4048,8 @@ CC_DICT = {
         "tld": [".tn"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "TND",
-        ],
+        "currencies": ["TND"],
+        "continent": "AF",
     },
     "TO": {
         "code": "TO",
@@ -4253,9 +4060,8 @@ CC_DICT = {
         "tld": [".to"],
         "alias": [""],
         "languages": ["en", "to"],
-        "currencies": [
-            "TOP",
-        ],
+        "currencies": ["TOP"],
+        "continent": "OC",
     },
     "TR": {
         "code": "TR",
@@ -4266,9 +4072,8 @@ CC_DICT = {
         "tld": [".tr"],
         "alias": [""],
         "languages": ["tr"],
-        "currencies": [
-            "TRY",
-        ],
+        "currencies": ["TRY"],
+        "continent": "AS",
     },
     "TT": {
         "code": "TT",
@@ -4279,9 +4084,8 @@ CC_DICT = {
         "tld": [".tt"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "TTD",
-        ],
+        "currencies": ["TTD"],
+        "continent": "NA",
     },
     "TV": {
         "code": "TV",
@@ -4293,6 +4097,7 @@ CC_DICT = {
         "alias": [""],
         "languages": ["en"],
         "currencies": ["TVD", "AUD"],
+        "continent": "OC",
     },
     "TW": {
         "code": "TW",
@@ -4303,9 +4108,8 @@ CC_DICT = {
         "tld": [".tw"],
         "alias": [""],
         "languages": ["zh"],
-        "currencies": [
-            "TWD",
-        ],
+        "currencies": ["TWD"],
+        "continent": "AS",
     },
     "TZ": {
         "code": "TZ",
@@ -4316,9 +4120,8 @@ CC_DICT = {
         "tld": [".tz"],
         "alias": [""],
         "languages": ["sw", "en"],
-        "currencies": [
-            "TZS",
-        ],
+        "currencies": ["TZS"],
+        "continent": "AF",
     },
     "UA": {
         "code": "UA",
@@ -4329,9 +4132,8 @@ CC_DICT = {
         "tld": [".ua"],
         "alias": [""],
         "languages": ["uk"],
-        "currencies": [
-            "UAH",
-        ],
+        "currencies": ["UAH"],
+        "continent": "EU",
     },
     "UG": {
         "code": "UG",
@@ -4342,9 +4144,8 @@ CC_DICT = {
         "tld": [".ug"],
         "alias": [""],
         "languages": ["en", "sw"],
-        "currencies": [
-            "UGX",
-        ],
+        "currencies": ["UGX"],
+        "continent": "AF",
     },
     "UM": {
         "code": "UM",
@@ -4355,9 +4156,8 @@ CC_DICT = {
         "tld": [""],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "NA",
     },
     "US": {
         "code": "US",
@@ -4368,9 +4168,8 @@ CC_DICT = {
         "tld": [".us"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "NA",
     },
     "UY": {
         "code": "UY",
@@ -4381,9 +4180,8 @@ CC_DICT = {
         "tld": [".uy"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "UYU",
-        ],
+        "currencies": ["UYU"],
+        "continent": "SA",
     },
     "UZ": {
         "code": "UZ",
@@ -4394,9 +4192,8 @@ CC_DICT = {
         "tld": [".uz"],
         "alias": [""],
         "languages": ["uz", "ru"],
-        "currencies": [
-            "UZS",
-        ],
+        "currencies": ["UZS"],
+        "continent": "AS",
     },
     "VA": {
         "code": "VA",
@@ -4407,9 +4204,8 @@ CC_DICT = {
         "tld": [".va"],
         "alias": [""],
         "languages": ["it", "la"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "EU",
     },
     "VC": {
         "code": "VC",
@@ -4420,9 +4216,8 @@ CC_DICT = {
         "tld": [".vc"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "XCD",
-        ],
+        "currencies": ["XCD"],
+        "continent": "NA",
     },
     "VE": {
         "code": "VE",
@@ -4433,9 +4228,8 @@ CC_DICT = {
         "tld": [".ve"],
         "alias": [""],
         "languages": ["es"],
-        "currencies": [
-            "VEF",
-        ],
+        "currencies": ["VEF"],
+        "continent": "SA",
     },
     "VG": {
         "code": "VG",
@@ -4446,9 +4240,8 @@ CC_DICT = {
         "tld": [".vg"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "NA",
     },
     "VI": {
         "code": "VI",
@@ -4459,9 +4252,8 @@ CC_DICT = {
         "tld": [".vi"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "USD",
-        ],
+        "currencies": ["USD"],
+        "continent": "NA",
     },
     "VN": {
         "code": "VN",
@@ -4472,9 +4264,8 @@ CC_DICT = {
         "tld": [".vn"],
         "alias": [""],
         "languages": ["vi"],
-        "currencies": [
-            "VND",
-        ],
+        "currencies": ["VND"],
+        "continent": "AS",
     },
     "VU": {
         "code": "VU",
@@ -4485,9 +4276,8 @@ CC_DICT = {
         "tld": [".vu"],
         "alias": [""],
         "languages": ["bi", "en", "fr"],
-        "currencies": [
-            "VUV",
-        ],
+        "currencies": ["VUV"],
+        "continent": "OC",
     },
     "WF": {
         "code": "WF",
@@ -4498,9 +4288,8 @@ CC_DICT = {
         "tld": [".wf"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "XPF",
-        ],
+        "currencies": ["XPF"],
+        "continent": "OC",
     },
     "WS": {
         "code": "WS",
@@ -4511,9 +4300,8 @@ CC_DICT = {
         "tld": [".ws"],
         "alias": [""],
         "languages": ["sm", "en"],
-        "currencies": [
-            "WST",
-        ],
+        "currencies": ["WST"],
+        "continent": "OC",
     },
     "YE": {
         "code": "YE",
@@ -4524,9 +4312,8 @@ CC_DICT = {
         "tld": [".ye"],
         "alias": [""],
         "languages": ["ar"],
-        "currencies": [
-            "YER",
-        ],
+        "currencies": ["YER"],
+        "continent": "AS",
     },
     "YT": {
         "code": "YT",
@@ -4537,9 +4324,8 @@ CC_DICT = {
         "tld": [".yt"],
         "alias": [""],
         "languages": ["fr"],
-        "currencies": [
-            "EUR",
-        ],
+        "currencies": ["EUR"],
+        "continent": "AF",
     },
     "ZA": {
         "code": "ZA",
@@ -4550,9 +4336,8 @@ CC_DICT = {
         "tld": [".za"],
         "alias": [""],
         "languages": ["af", "en", "nr", "st", "ss", "tn", "ts", "ve", "xh", "zu"],
-        "currencies": [
-            "ZAR",
-        ],
+        "currencies": ["ZAR"],
+        "continent": "AF",
     },
     "ZM": {
         "code": "ZM",
@@ -4563,9 +4348,8 @@ CC_DICT = {
         "tld": [".zm"],
         "alias": [""],
         "languages": ["en"],
-        "currencies": [
-            "ZMK",
-        ],
+        "currencies": ["ZMK"],
+        "continent": "AF",
     },
     "ZW": {
         "code": "ZW",
@@ -4577,6 +4361,7 @@ CC_DICT = {
         "alias": [""],
         "languages": ["en", "sn", "nd"],
         "currencies": ["USD", "ZAR", "BWP", "GBP", "EUR"],
+        "continent": "AF",
     },
 }
 
@@ -4591,6 +4376,101 @@ class AsDictMixin(object):
     def as_dict(self):
         "Legacy"
         return self._asdict()
+
+
+class FindMixin(object):
+    def __iter__(self, **kwargs: dict) -> Iterator[Type["Country"]]:
+        for country in self.countries:
+            yield country
+
+    def __find(
+        self,
+        attr: str,
+        value: str,
+        strict: bool = False,
+        multiple: bool = True,
+        *args: list,
+        **kwargs: dict,
+    ) -> Optional[List[Type["Country"]]]:
+        def match(
+            current: Union[str, list], value: str, strict: bool = False
+        ) -> Optional[Type["Country"]]:
+            if isinstance(current, str):
+                return (
+                    country
+                    if (not strict and value.lower() == current.lower())
+                    or (strict and value == current)
+                    else None
+                )
+            elif isinstance(current, list):
+                return (
+                    country
+                    if (not strict and value.lower() in [_.lower() for _ in current])
+                    or (strict and value in current)
+                    else None
+                )
+
+        result = []
+        for country in self:
+            if match(getattr(country, attr), value, strict):
+                result.append(country)
+                if not multiple:
+                    break
+
+        return result
+
+    def __unknown(self):
+        return self.__find("code", "XX", True, False)[0]
+
+    def find_by_code(self, **kwargs: dict) -> List[Type["Country"]]:
+        value = kwargs.get("value", None)
+        strict = kwargs.get("strict", True)
+        result = self.__find("code", value, False, False)
+        return result[0] if result else self.__unknown()
+
+    def find_by_name(self, **kwargs: dict) -> Type["Country"]:
+        value = kwargs.get("value", None)
+        strict = kwargs.get("strict", True)
+        result = self.__find("name", value, strict, False)
+        return result[0] if result else self.__unknown()
+
+    def find_by_tld(self, **kwargs: dict) -> Type["Country"]:
+        value = kwargs.get("value", None)
+        strict = kwargs.get("strict", True)
+        result = self.__find("tld", value, strict, False)
+        return result[0] if result else self.__unknown()
+
+    def find_by_alias(self, **kwargs: dict) -> Type["Country"]:
+        value = kwargs.get("value", None)
+        strict = kwargs.get("strict", True)
+        result = self.__find("alias", value, strict, False)
+        return result[0] if result else self.__unknown()
+
+    def find_by_language(self, **kwargs: dict) -> List[Type["Country"]]:
+        value = kwargs.get("value", None)
+        strict = kwargs.get("strict", True)
+        multiple = kwargs.get("multiple", True)
+        result = self.__find("languages", value, strict, multiple)
+        if kwargs.get("exact", False):
+            result = [_ for _ in result if _.languages == [value]]
+        return result
+
+    def find_by_continent(self, **kwargs: dict) -> List[Type["Country"]]:
+        value = kwargs.get("value", None)
+        strict = kwargs.get("strict", True)
+        multiple = kwargs.get("multiple", True)
+        result = self.__find("continent", value, strict, multiple)
+        if kwargs.get("exact", False):
+            result = [_ for _ in result if _.continent == value]
+        return result
+
+    def find(self, **kwargs: dict) -> Optional[List[Type["Country"]]]:
+        finders = [
+            getattr(self, f"find_by_{name}")
+            for name in ["code", "name", "tld", "alias", "language", "continent"]
+        ]
+
+        return list(filter(lambda c: c, [finder(**kwargs) for finder in finders]))
 
 
 @dataclass
@@ -4815,12 +4695,13 @@ class Country(AsDictMixin):
     * `code` 2-Letter ISO 3166-1 Alpha-2 Country Code.
     * `name` The verbose name in standard-english.
     * `native` The verbose name in the original language.
-    * `year` The year the alpha-2 code was officialized
-    * `phone` A list of Phone code
+    * `year` The year the alpha-2 code was officialized.
+    * `phone` A list of Phone code.
     * `tld` Top Level Domain.
     * `alias` An alternative `code`.
     * `language` A list of ISO-639-1 Representations.
     * `currencies` A list of 3-Letter ISO 4217 Code.
+    * `continent` The Continent verbose name in standard-english.
     """
 
     code: str
@@ -4832,6 +4713,7 @@ class Country(AsDictMixin):
     alias: List[str] = field(default_factory=list)
     languages: List[Language] = field(default_factory=list)
     currencies: List[str] = field(default_factory=list)
+    continent: Optional[str] = field(default_factory=str)
 
     def __getitem__(self, key):
         if isinstance(self, Country) or issubclass(self, Country):
@@ -4840,14 +4722,106 @@ class Country(AsDictMixin):
             raise NotImplementedError
 
 
-@dataclass(frozen=True)
-class World(AsDictMixin):
+@dataclass
+class Continent(AsDictMixin, FindMixin):
     """
-    A World holds little info:
+    A Continent holds:
+    * `code` 2-Letter ISO 3166 Continent Code.
+    * `name` The verbose name in standard-english.
     * `countries` a list of Countries.
     """
 
+    auto_populate: InitVar[bool] = field(default=True)
+
+    code: str = field(default="")
+    name: str = field(default="")
+    countries: Optional[List[Country]] = field(default_factory=list, repr=False)
+
+    def __post_init__(
+        self, auto_populate: bool = True, *args: list, **kwargs: dict
+    ) -> Literal[None]:
+        if auto_populate:
+            self.countries.append(
+                Country(
+                    code="XX",
+                    name="Unknown",
+                    native="Unknown",
+                    year="0000",
+                    phone=[],
+                    tld=[],
+                    alias=[],
+                    languages=[],
+                    currencies="xx",
+                )
+            )
+            for code, data in CC_DICT.items():
+                (
+                    name,
+                    native,
+                    year,
+                    phone,
+                    tld,
+                    alias,
+                    languages,
+                    currencies,
+                    continent,
+                ) = [
+                    data.get(_)
+                    for _ in [
+                        "name",
+                        "native",
+                        "year",
+                        "phone",
+                        "tld",
+                        "alias",
+                        "languages",
+                        "currencies",
+                        "continent",
+                    ]
+                ]
+
+                if continent != self.code:
+                    continue
+
+                co_data = CO_DICT.get(data.get("continent"))
+                co_data.update({"auto_populate":False})
+                continent = Continent(**co_data)
+                languages = [Language(**LL_DICT.get(_)) for _ in data.get("languages")]
+                currencies = [
+                    Currency(**CURR_DICT.get(_)) for _ in data.get("currencies")
+                ]
+                self.countries.append(
+                    Country(
+                        code=code,
+                        name=name,
+                        native=native,
+                        year=year,
+                        phone=phone,
+                        tld=tld,
+                        alias=alias,
+                        languages=languages,
+                        currencies=currencies,
+                        continent=continent,
+                    )
+                )
+
+    def __getitem__(self, key):
+        if isinstance(self, Continent) or issubclass(self, Continent):
+            return getattr(self, key)
+        else:
+            raise NotImplementedError
+
+
+@dataclass(frozen=True)
+class World(AsDictMixin, FindMixin):
+    """
+    A World holds little info:
+    * `countries` a list of Countries.
+    * `continent` a list of Continents.
+    """
+
     countries: Optional[List[Country]] = field(default_factory=list)
+    continents: Optional[List[Continent]] = field(default_factory=list)
 
     def __post_init__(self, **kwargs: dict) -> Literal[None]:
         self.countries.append(
@@ -4862,8 +4836,24 @@ class World(AsDictMixin):
                 languages=[],
             )
         )
+        self.continents.append(
+            Continent(
+                code="XX",
+                name="Unknown",
+                countries=[],
+            )
+        )
+        for code, name in CO_DICT.items():
+            self.continents.append(
+                Continent(
+                    code=code,
+                    name=name,
+                    countries=[],
+                )
+            )
+
         for code, data in CC_DICT.items():
-            name, native, year, phone, tld, alias, languages = [
+            name, native, year, phone, tld, alias, languages, currencies, continent = [
                 data.get(_)
                 for _ in [
                     "name",
@@ -4873,9 +4863,14 @@ class World(AsDictMixin):
                     "tld",
                     "alias",
                     "languages",
+                    "currencies",
+                    "continent",
                 ]
             ]
 
+            co_data = CO_DICT.get(data.get("continent"))
+            co_data.update({"auto_populate":False})
+            continent = Continent(**co_data)
             languages = [Language(**LL_DICT.get(_)) for _ in data.get("languages")]
             currencies = [Currency(**CURR_DICT.get(_)) for _ in data.get("currencies")]
             self.countries.append(
@@ -4889,89 +4884,6 @@ class World(AsDictMixin):
                     alias=alias,
                     languages=languages,
                     currencies=currencies,
+                    continent=continent,
                 )
             )
-
-    def __iter__(self, **kwargs: dict) -> Iterator[Country]:
-        for country in self.countries:
-            yield country
-
-    def __find(
-        self,
-        attr: str,
-        value: str,
-        strict: bool = False,
-        multiple: bool = True,
-        *args: list,
-        **kwargs: dict,
-    ) -> Optional[List[Country]]:
-        def match(
-            current: Union[str, list], value: str, strict: bool = False
-        ) -> Optional[Country]:
-            if isinstance(current, str):
-                return (
-                    country
-                    if (not strict and value.lower() == current.lower())
-                    or (strict and value == current)
-                    else None
-                )
-            elif isinstance(current, list):
-                return (
-                    country
-                    if (not strict and value.lower() in [_.lower() for _ in current])
-                    or (strict and value in current)
-                    else None
-                )
-
-        result = []
-        for country in self:
-            if match(getattr(country, attr), value, strict):
-                result.append(country)
-                if not multiple:
-                    break
-
-        return result
-
-    def __unknown(self):
-        return self.__find("code", "XX", True, False)[0]
-
-    def find_by_code(self, **kwargs: dict) -> List[Country]:
-        value = kwargs.get("value", None)
-        strict = kwargs.get("strict", True)
-        result = self.__find("code", value, False, False)
-        return result[0] if result else self.__unknown()
-
-    def find_by_name(self, **kwargs: dict) -> Country:
-        value = kwargs.get("value", None)
-        strict = kwargs.get("strict", True)
-        result = self.__find("name", value, strict, False)
-        return result[0] if result else self.__unknown()
-
-    def find_by_tld(self, **kwargs: dict) -> Country:
-        value = kwargs.get("value", None)
-        strict = kwargs.get("strict", True)
-        result = self.__find("tld", value, strict, False)
-        return result[0] if result else self.__unknown()
-
-    def find_by_alias(self, **kwargs: dict) -> Country:
-        value = kwargs.get("value", None)
-        strict = kwargs.get("strict", True)
-        result = self.__find("alias", value, strict, False)
-        return result[0] if result else self.__unknown()
-
-    def find_by_language(self, **kwargs: dict) -> List[Country]:
-        value = kwargs.get("value", None)
-        strict = kwargs.get("strict", True)
-        multiple = kwargs.get("multiple", True)
-        result = self.__find("languages", value, strict, multiple)
-        if kwargs.get("exact", False):
-            result = [_ for _ in result if _.languages == [value]]
-        return result
-
-    def find(self, **kwargs: dict) -> Optional[List[Country]]:
-        finders = [
-            getattr(self, f"find_by_{name}")
-            for name in ["code", "name", "tld", "alias", "language"]
-        ]
-
-        return list(filter(lambda c: c, [finder(**kwargs) for finder in finders]))
